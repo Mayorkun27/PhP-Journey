@@ -15,7 +15,7 @@ $break = "<br>";
     echo(checkEvenOdd(3));
     echo $break;
 
-    //2. Calculate the sum of 1 to 10
+    //2. Calculate the sum of two numbers
     function sumFunction($start, $stop) {
         $sum = 0;
         for ($i = $start; $i <= $stop; $i++) {
