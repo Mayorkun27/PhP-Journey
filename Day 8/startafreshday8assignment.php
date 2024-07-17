@@ -55,6 +55,7 @@
    <!-- CREATE A CONTACT FORM AND SUMBIT THE DETAILS IN ANOTHER FILE -->
     <div class="form">
         <form action="storageassignment.php" method="POST">
+            <h2>Contact</h2>
             <div class="gen">
                 <div>
                     <label for="fname">First Name:</label><br>

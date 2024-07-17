@@ -19,7 +19,7 @@
     var_dump(preg_match($pattern, $str));
 
     $str = "The rain in SPAIN falls mainly on the plains.";
-    $pattern = "/e/i";
+    $pattern = "/spain/";
     echo preg_match_all($pattern, $str);
 
     $str = "Visit Microsoft!";
