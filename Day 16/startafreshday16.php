@@ -1,19 +1,25 @@
 <?php
     include "connect.php";
 
-    if (isset($_POST["submit"])) {
+    if(isset($_POST["submit"])) {
 
         $name = $_POST["name"];
+        $email = $_POST["email"];
         $perm_file = $_FILES["image"]["name"];
         $tmp_file = $_FILES["image"]["tmp_name"];
-        $description = $_POST["description"];
 
-        if (empty($name) && empty($perm_file) && empty($description)) {
-            echo "All Fields are required";
+        if (empty($name) && empty($email) && empty($perm_file)) {
+            echo "All fields are required";
         } else {
-            $insert = mysqli_query($conn, "INSERT INTO `hall_of_fame`(`name`, `image`, `post`) VALUES ('$name','$perm_file','$description')");
-            move_uploaded_file($tmp_file, "uploads/$perm_file");
-            echo "Hero uploaded sucessfully";
+            $find = mysqli_query($conn, "SELECT * FROM `attendee` WHERE `email` = '$email'");
+            $result = mysqli_num_rows($find);
+            if ($result > 0) {
+                echo "This Email has already RSVP'd!";
+            } else {
+                $insert = mysqli_query($conn, "INSERT INTO `attendee`(`name`, `email`, `image`) VALUES ('$name','$email','$perm_file')");
+                move_uploaded_file($tmp_file, "uploads/$perm_file");
+                echo "Thanks for RSVP'ing for Tech to Cash, See you there!";
+            };
         };
     };
 ?>
@@ -31,17 +37,17 @@
             box-shadow: 5px 5px 10px #eee,
             -5px -5px 10px #eee;
             width: 40%;
-            margin: 4rem auto;
+            margin: 3rem auto;
             form{
                 display: flex;
                 flex-direction: column;
                 gap: 1rem;
             }
             input{
-                border: 1px solid #000;
+                border: 2px solid #eee;
                 outline: none;
                 text-indent: 10px;
-                height: 40px;
+                height: 50px;
                 box-shadow: 5px 5px 5px #eee;
             }
             textarea{
@@ -67,11 +73,11 @@
 <body>
     
     <div class="form">
-        <h2>Hall Of Fame</h2>
+        <h2>Attendee</h2>
         <form action="" method="POST" enctype="multipart/form-data">
-            <input type="text" name="name" id="name" placeholder="Input Hero Name">
+            <input type="text" name="name" id="name" placeholder="Input Your Name">
+            <input type="email" name="email" id="email" placeholder="Input Your email">
             <input type="file" name="image" id="image">
-            <textarea name="description" id="description" rows="5" placeholder="Input Hero Post"></textarea>
             <button type="submit" class="btn" name="submit">Submit</button>
         </form>
     </div>

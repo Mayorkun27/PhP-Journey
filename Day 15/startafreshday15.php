@@ -2,20 +2,25 @@
     include "connect.php";
 
     if (isset($_POST["submit"])) {
+        $email = $_POST["email"];
+        $password = $_POST["password"];
 
-        $name = $_POST["name"];
-        $perm_file = $_FILES["image"]["name"];
-        $tmp_file = $_FILES["image"]["tmp_name"];
-        $description = $_POST["description"];
-
-        if (empty($name) && empty($perm_file) && empty($description)) {
-            echo "All Fields are required";
+        if (empty($email) && empty($password)) {
+            echo "All Inputs are required";
         } else {
-            $insert = mysqli_query($conn, "INSERT INTO `hall_of_fame`(`name`, `image`, `post`) VALUES ('$name','$perm_file','$description')");
-            move_uploaded_file($tmp_file, "uploads/$perm_file");
-            echo "Hero uploaded sucessfully";
-        };
-    };
+            $select = mysqli_query($conn, "SELECT * FROM `customer_details` WHERE `email` = '$email' and `password` = '$password'");
+            $result = mysqli_num_rows($select);
+            if ($result > 0) {
+                $user = mysqli_fetch_assoc($select);
+                header("location: index.php");
+
+                session_start();
+            } else {
+                header("location: ../Day 11/startafreshday11.php?msg='Invalid credentials'");
+            }
+        }
+    }
+    
 ?>
 
 <!DOCTYPE html>
@@ -67,11 +72,10 @@
 <body>
     
     <div class="form">
-        <h2>Hall Of Fame</h2>
+        <h2>Login</h2>
         <form action="" method="POST" enctype="multipart/form-data">
-            <input type="text" name="name" id="name" placeholder="Input Hero Name">
-            <input type="file" name="image" id="image">
-            <textarea name="description" id="description" rows="5" placeholder="Input Hero Post"></textarea>
+            <input type="email" name="email" id="email" placeholder="Enter Your Email">
+            <input type="password" name="password" id="password" placeholder="Enter Your Password">
             <button type="submit" class="btn" name="submit">Submit</button>
         </form>
     </div>
