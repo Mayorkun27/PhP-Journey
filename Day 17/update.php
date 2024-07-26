@@ -3,25 +3,25 @@
 
     session_start();
 
+    $sessionEmail = $_SESSION['email'];
+
+    $select = mysqli_query($conn, "SELECT * FROM `with_c_r_u_d` WHERE `email` = '$sessionEmail'");
+    $details = mysqli_fetch_assoc($select);
+
     if (isset($_POST["submit"])) {
-        $email = $_POST["email"];
+        $fname = $_POST["fname"];
+        $lname = $_POST["lname"];
         $password = $_POST["password"];
+        $perm_file = $_FILES["file"]["name"];
+        $tmp_file = $_FILES["file"]["tmp_name"];
 
         if (empty($email) && empty($password)) {
             echo "All Inputs are required";
         } else {
-            $select = mysqli_query($conn, "SELECT * FROM `customer_details` WHERE `email` = '$email' and `password` = '$password'");
-            $result = mysqli_num_rows($select);
-            if ($result > 0) {
-                $user = mysqli_fetch_assoc($select);
-                $_SESSION['email'] = $user['email'];
-                $_SESSION['password'] = $user['password'];
+            $update = mysqli_query($conn, "UPDATE `with_c_r_u_d` SET ``fname`='$fname',`lname`='$lname',`image`='$perm_file',`password`='$password'");
+            move_uploaded_file($tmp_file, "uploads/$perm_file");
 
-
-                header("location: index.php");
-            } else {
-                header("location: ../Day 11/startafreshday11.php?msg='Invalid credentials'");
-            }
+            header("location: read.php?msg='Details updated successfully'");
         }
     }
     
@@ -32,7 +32,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Update</title>
     <style>
         .form{
             padding: 2rem;
@@ -76,11 +76,14 @@
 <body>
     
     <div class="form">
-        <h2>Login</h2>
+        <h2>Update Details</h2>
         <form action="" method="POST" enctype="multipart/form-data">
-            <input type="email" name="email" id="email" placeholder="Enter Your Email">
-            <input type="password" name="password" id="password" placeholder="Enter Your Password">
-            <button type="submit" class="btn" name="submit">Submit</button>
+            <input type="text" name="fname" id="fname" value="<?php echo $details['fname']?>">
+            <input type="text" name="lname" id="lname" value="<?php echo $details['lname']?>">
+            <input type="file" name="file" id="file">
+            <input type="password" name="password" id="password" value="<?php echo $details['password']?>">
+
+            <button type="submit" class="btn" name="submit">Update</button>
         </form>
     </div>
 

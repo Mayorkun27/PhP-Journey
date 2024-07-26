@@ -21,26 +21,28 @@
             // Echo error if all values are not filled
             echo("All fields are required!.");
         } else {
-            $select = mysqli_query($conn, "SELECT * FROM `customer_details` WHERE `email` = '$email'");
+            $select = mysqli_query($conn, "SELECT * FROM `with_c_r_u_d` WHERE `email` = '$email'");
             $result = mysqli_num_rows($select);
+
+            
             if ($password !== $cpassword) {
                 echo "Passwords do not match, Please check and try again";
             }elseif ($result > 0) {
                 echo "Email already Exists!.";
             } else {
+                // Hash password for better security
+                $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
                 // Save data into the database
-                $insert = mysqli_query($conn, "INSERT INTO `customer_details`(`fname`, `lname`, `uname`, `email`, `file`, `password`, `cpassword`) VALUES ('$fname','$lname','$uname','$email','$perm_file','$password','$cpassword')");
+                $insert = mysqli_query($conn, "INSERT INTO `with_c_r_u_d`(`fname`, `lname`, `uname`, `email`, `image`, `password`) VALUES ('$fname','$lname','$uname','$email','$perm_file','$hashed_password')");
                 move_uploaded_file($tmp_file, "uploads/$perm_file");
                 echo "User created successfully";
+
+                header("location: login.php");
             };
         };
     };
 
-
-    // assignment
-    // If password and confirmation don't match, output error
-    
-    // Full name, age, gender, country;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -68,7 +70,7 @@
             h2{
                 font-weight: 900;
                 font-family: sans-serif;
-                font-size: 3rem;
+                font-size: 2.5rem;
             }
             button{
                 width: 25%;
@@ -85,17 +87,17 @@
 <body>
 
     <div class="form">
-        <h2>Signup</h2>
+        <h2>Create new Account</h2>
         <form action="" method="POST" enctype="multipart/form-data">
             <input type="text" name="fname" id="fname" placeholder="Input your First Name">
             <input type="text" name="lname" id="lname" placeholder="Input your Last Name">
             <input type="text" name="uname" id="uname" placeholder="Input your User Name">
             <input type="email" name="email" id="email" placeholder="Input your Email Address">
-            <input type="file" name="file" id="file" placeholder="Input your Picture">
+            <input type="file" name="file" id="file">
             <input type="password" name="password" id="password" placeholder="Input your Password">
             <input type="password" name="cpassword" id="cpassword" placeholder="Confirm your Password">
 
-            <button type="submit" class="btn" name="submit">Submit</button>
+            <button type="submit" class="btn" name="submit">Create Account</button>
         </form>
     </div>
     

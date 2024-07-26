@@ -7,6 +7,18 @@
     echo "<br>";
     
     echo "<br>";
+
+    if (isset($_GET["delete"])) {
+        $email = $_GET["delete"];
+        // echo $delete;
+        
+        $delete = mysqli_query($conn, "DELETE FROM `day_12` WHERE `email` = '$email'");
+        
+        if ($delete) {
+            header("location: read.php");
+        };
+    }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -24,6 +36,7 @@
                 <th>Last Name</th>
                 <th>Email</th>
                 <th>Dp</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <?php
@@ -53,6 +66,9 @@
                 </td>
                 <td>
                     <img src="uploads/<?php echo $details["file"]?>" width="50px" alt="...">
+                </td>
+                <td>
+                    <a href="read.php?delete=<?php echo $details["email"];?>"><button type="submit" name="delete">Delete User</button></a>
                 </td>
             </tr>
         </tbody>

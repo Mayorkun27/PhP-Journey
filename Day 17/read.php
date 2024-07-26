@@ -2,17 +2,21 @@
     include "connect.php";
 
     session_start();
-    
-    // echo "Welcome";
 
     $sessionEmail = $_SESSION['email'];
 
-    $select = mysqli_query($conn, "SELECT * FROM `customer_details` WHERE `email` = '$sessionEmail'");
+    $select = mysqli_query($conn, "SELECT * FROM `with_c_r_u_d` WHERE `email` = '$sessionEmail'");
     $details = mysqli_fetch_assoc($select);
 
     if (isset($_POST["logout"])) {
         session_abort();
         header("location: startafreshday15.php?msg='Logged Out successfully'");
+    };
+
+    if (isset($_POST["delete"])) {
+        $delete = mysqli_query($conn, "DELETE FROM `with_c_r_u_d` WHERE `email` = '$sessionEmail'");
+        session_abort();
+        header("location: startafreshday15.php?msg='Account Deleted Successfully'");
     };
 ?>
 
@@ -70,6 +74,15 @@
                 }
             }
         }
+        .btn{
+                width: 15%;
+                margin: 20px;
+                background: #000;
+                color: #fff;
+                height: 40px;
+                border: none;
+                border-radius: 5px;
+            }
     </style>
 </head>
 <body>
@@ -77,7 +90,7 @@
     <div class="gen">
         <div class="card">
             <div class="card-img">
-                <img src="../Day 11/uploads/<?php echo $details["file"]; ?>" alt="...">
+                <img src="/uploads/<?php echo $details["file"]; ?>" alt="...">
             </div>
             <div class="card-text">
                 <div class="top">
@@ -94,7 +107,10 @@
 
     <form action="" method="POST">
         <button class="btn" name="logout">Log Out</button>
+        <button class="btn" name="delete">Delete Account</button>
     </form>
+
+    <a href="update.php">Edit Details</a>
 
 </body>
 </html>
