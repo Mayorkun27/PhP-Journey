@@ -1,0 +1,93 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz App</title>
+    <style>
+        /* Basic styling */
+        .question-container {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="quiz-container"></div>
+    <div id="score-container" style="display: none;">
+        <p id="score"></p>
+    </div>
+    <script>
+        const quizContainer = document.getElementById('quiz-container');
+        const scoreContainer = document.getElementById('score-container');
+        const scoreDisplay = document.getElementById('score');
+        let currentQuestionIndex = 0;
+        let score = 0;
+        const totalTime = 60; // 60 seconds
+        let timeRemaining = totalTime;
+
+        async function fetchQuestions() {
+            const response = await fetch('http://localhost:3000/api/questions');
+            return response.json();
+        }
+
+        function showQuestion(question) {
+            const questionHTML = `
+                <div class="question-container">
+                    <p>${question.question}</p>
+                    ${question.options.map(option => `
+                        <button class="option-button">${option}</button>
+                    `).join('')}
+                </div>
+            `;
+            quizContainer.innerHTML = questionHTML;
+            document.querySelectorAll('.option-button').forEach(button => {
+                button.addEventListener('click', () => checkAnswer(button.textContent, question.answer));
+            });
+        }
+
+        function checkAnswer(selectedOption, correctAnswer) {
+            if (selectedOption === correctAnswer) {
+                score++;
+            }
+            currentQuestionIndex++;
+            nextQuestion();
+        }
+
+        function nextQuestion() {
+            if (currentQuestionIndex < questions.length && timeRemaining > 0) {
+                showQuestion(questions[currentQuestionIndex]);
+            } else {
+                endQuiz();
+            }
+        }
+
+        function endQuiz() {
+            quizContainer.style.display = 'none';
+            scoreContainer.style.display = 'block';
+            scoreDisplay.textContent = `Your score: ${score} out of ${questions.length}`;
+        }
+
+        function startTimer() {
+            const timer = setInterval(() => {
+                if (timeRemaining > 0) {
+                    timeRemaining--;
+                } else {
+                    clearInterval(timer);
+                    endQuiz();
+                }
+            }, 1000);
+        }
+
+        let questions = [];
+
+        async function initQuiz() {
+            questions = await fetchQuestions();
+            showQuestion(questions[currentQuestionIndex]);
+            startTimer();
+        }
+
+        initQuiz();
+    </script>
+</body>
+</html>

@@ -15,12 +15,9 @@
             // Find where both email and password exists in same row
             $email_and_password_result = mysqli_num_rows($select_email_and_password);
 
-            // $select_email = mysqli_query($conn, "SELECT * FROM `with_c_r_u_d` WHERE `email` = '$email'");
-            // $email_result = mysqli_num_rows($select_email);
-
             // To check if the inputed password is equal to the hashed password in the DB
-            $compared_password = password_verify($password, $hashed_password);
-            if ($compared_password && $email_and_password_result > 0) {
+            // $compared_password = password_verify($password, $hashed_password);
+            if ($email_and_password_result > 0) {
                 
                 $user = mysqli_fetch_assoc($select_email_and_password);
                 $_SESSION['email'] = $user['email'];
