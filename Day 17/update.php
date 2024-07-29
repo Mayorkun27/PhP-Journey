@@ -18,7 +18,7 @@
         if (empty($email) && empty($password)) {
             echo "All Inputs are required";
         } else {
-            $update = mysqli_query($conn, "UPDATE `with_c_r_u_d` SET ``fname`='$fname',`lname`='$lname',`image`='$perm_file',`password`='$password'");
+            $update = mysqli_query($conn, "UPDATE `with_c_r_u_d` SET `fname`='$fname',`lname`='$lname',`image`='$perm_file',`password`='$password'");
             move_uploaded_file($tmp_file, "uploads/$perm_file");
 
             header("location: read.php?msg='Details updated successfully'");

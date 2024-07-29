@@ -90,7 +90,7 @@
     <div class="gen">
         <div class="card">
             <div class="card-img">
-                <img src="/uploads/<?php echo $details["file"]; ?>" alt="...">
+                <img src="uploads/<?php echo $details["image"]; ?>" alt="...">
             </div>
             <div class="card-text">
                 <div class="top">

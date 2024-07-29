@@ -27,10 +27,14 @@
             // } else
             if ($result > 0) {
                 echo "Email or Matric Number Already Exists!";
+                global $msg1;
+                $msg1 = "Email or Matric Number Already Exists!";
             } else {
                 $insert = mysqli_query($conn, "INSERT INTO `students`(`fname`, `lname`, `mnum`, `email`, `file`, `lvl`, `dob`, `password`) VALUES ('$fname','$lname','$mnum','$email','$perm_file','$lvl','$dob','$password')");
                 move_uploaded_file($tmp_file, "uploads/$perm_file");
                 echo "Account Registration Successful.";
+
+                header("location: login.php");
             };
         };
     };
@@ -50,7 +54,7 @@
             overflow-x: hidden;
         }
         body{
-            background: #000;
+            /* background: #000; */
         }
         .general{
             margin: 2rem auto;
@@ -124,6 +128,7 @@
             <input type="password" name="cpassword" id="cpassword" class="form-control">
             <div style="text-align: center;">
                 <button class="btn" type="submit" name="register">Register</button>
+                <a href="login.php">Click to login</a>
             </div>
         </form>
     </div>
