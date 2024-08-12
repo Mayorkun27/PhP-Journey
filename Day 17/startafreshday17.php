@@ -34,8 +34,8 @@
                 $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
                 // Save data into the database
-                // $insert = mysqli_query($conn, "INSERT INTO `with_c_r_u_d`(`fname`, `lname`, `uname`, `email`, `image`, `password`) VALUES ('$fname','$lname','$uname','$email','$perm_file','$hashed_password')");
-                $insert = mysqli_query($conn, "INSERT INTO `with_c_r_u_d`(`fname`, `lname`, `uname`, `email`, `image`, `password`) VALUES ('$fname','$lname','$uname','$email','$perm_file','$password')");
+                $insert = mysqli_query($conn, "INSERT INTO `with_c_r_u_d`(`fname`, `lname`, `uname`, `email`, `image`, `password`) VALUES ('$fname','$lname','$uname','$email','$perm_file','$hashed_password')");
+                // $insert = mysqli_query($conn, "INSERT INTO `with_c_r_u_d`(`fname`, `lname`, `uname`, `email`, `image`, `password`) VALUES ('$fname','$lname','$uname','$email','$perm_file','$password')");
                 move_uploaded_file($tmp_file, "uploads/$perm_file");
                 echo "User created successfully";
 

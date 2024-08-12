@@ -3,41 +3,15 @@
 
     session_start();
 
-    $session_mNum = $_SESSION['mnum'];
+    $session_fName = $_SESSION['fname'];
 
-    $select = mysqli_query($conn, "SELECT * FROM `students` WHERE `mnum` = '$session_mNum'");
+    $select = mysqli_query($conn, "SELECT * FROM `lecturer_details` WHERE `fname` = '$session_fName'");
     $details = mysqli_fetch_assoc($select);
-
-    if (isset($_POST["update"])) {
-        $fname = $_POST["fname"];
-        $lname = $_POST["lname"];
-        $perm_file = $_FILES["image"]["name"];
-        $tmp_file = $_FILES["image"]["tmp_name"];
-        $lvl = $_POST["lvl"];
-        $password = $_POST["password"];
-        $cpassword = $_POST["cpassword"];
-        if (empty($fname) && empty($lname) && empty($lvl) && empty($password) && empty($cpassword)) {
-           echo "All fields are required";
-        } else {
-            if ($password !== $cpassword) {
-                echo "Passwords don't match, Please check and try again later!.";
-            } else {
-                if (empty($perm_file)) {
-                    $perm_file = $details["file"];
-                }
-                $update = mysqli_query($conn, "UPDATE `students` SET `fname`='$fname',`lname`='$lname',`file`='$perm_file',`lvl`='$lvl',`password`='$password' WHERE `mnum` = '$session_mNum'");
-                move_uploaded_file($tmp_file, "uploads/$perm_file");
-
-                echo "Details updated successfully";
-                header("location: student.php");
-            }
-        }
-    };
 
     if (isset($_POST["logOut"])) {
         session_abort();
         echo "Logged out successfully!.";
-        header("location: login.php");
+        header("location: startafreshday19.php");
     }
 
 
@@ -274,7 +248,7 @@
     
     <section class="general">
         <nav class="sidebar">
-            <div class="navbar-brand">PHP SCHOOL</div>
+            <div class="navbar-brand">Mella</div>
             <ul>
                 <li class="active" id="home">Home</li>
                 <li id="profile">Profile</li>
@@ -288,87 +262,45 @@
         </nav>
         <main class="main">
             <header>
-                <h1>Welcome, <?php echo $details["mnum"]; ?></h1>
+                <h1>Welcome, <?php echo $details["fname"]; ?></h1>
                 <div class="right">
-                    <h5><?php echo "&lt;&sol;".$details["fname"]." ".$details["lname"]."&gt;"; ?></h5>
-                    <img src="uploads/<?php echo $details["file"]; ?>" alt="...">
+                    <h5><?php echo $details["fname"]." ".$details["lname"]; ?></h5>
                 </div>
             </header>
             <div class="main-content">
                 <div class="home">
-                    <h3>Coming Soon....</h3>
-                </div>
-
-                <div class="profile">
-                    <h3 style="width: 100%; margin-bottom: 2rem;">Profile</h3>
-                    <div class="info">
-                        <div class="card">
-                            <span>First Name</span>
-                            <h3><?php echo $details["fname"]; ?></h3>
-                        </div>
-                        <div class="card">
-                            <span>Last Name</span>
-                            <h3><?php echo $details["lname"]; ?></h3>
-                        </div>
-                        <div class="card small-card">
-                            <span>Level</span>
-                            <h3><?php echo $details["lvl"]; ?>lvl</h3>
-                        </div>
-                        <div class="card card-img">
-                            <span>Display Picture</span>
-                            <img src="uploads/<?php echo $details["file"]; ?>" alt="">
-                        </div>
-                        <div class="card small-card">
-                            <span>Date of Birth</span>
-                            <h3><?php echo $details["dob"]; ?></h3>
-                        </div>
-                        <div class="card">
-                            <span>Email</span>
-                            <h3><?php echo $details["email"]; ?></h3>
-                        </div>
-                        <div class="card">
-                            <span>Matric Number</span>
-                            <h3><?php echo $details["mnum"]; ?></h3>
-                        </div>
-                        <div style="text-align: center; width: 100%;">
-                            <button class="btn" type="button" id="editBtn">Edit</button>
+                    <div class="profile">
+                        <h3 style="width: 100%; margin-bottom: 2rem;">Courses to be taken</h3>
+                        <div class="info">
+                            <div class="card">
+                                <h5><?php echo $details["course1"]; ?></h5>
+                            </div>
+                            <div class="card">
+                                <h5><?php echo $details["course2"]; ?></h5>
+                            </div>
+                            <div class="card">
+                                <h5><?php echo $details["course3"]; ?></h5>
+                            </div>
+                            <div class="card">
+                                <h5><?php echo $details["course4"]; ?></h5>
+                            </div>
+                            <div class="card">
+                                <h5><?php echo $details["course5"]; ?></h5>
+                            </div>
+                            <div class="card">
+                                <h5><?php echo $details["course6"]; ?></h5>
+                            </div>
+                            <div class="card">
+                                <h5><?php echo $details["course7"]; ?></h5>
+                            </div>
+                            <div class="card">
+                                <h5><?php echo $details["course8"]; ?></h5>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="settings">
-                    <h3 style="width: 100%; margin-bottom: 2rem;">Update Your Info</h3>
-                    <div class="image">
-                        <img src="uploads/<?php echo $details["file"]; ?>" alt="...">
-                    </div>
-                    <div class="info">
-                        <form action="" method="post" enctype="multipart/form-data">
-                            <div class="fc-type-1">
-                                <label for="fname">First Name</label>
-                                <input type="text" name="fname" id="fname" class="form-control" value="<?php echo $details["fname"]; ?>">
-                            </div>
-                            <div class="fc-type-1">
-                                <label for="lname">Last Name</label>
-                                <input type="text" name="lname" id="lname" class="form-control" value="<?php echo $details["lname"]; ?>">
-                            </div>
-                            <label for="image">Display Picture</label>
-                            <input type="file" name="image" id="image" class="form-control">
-                            <label for="lvl">Level</label>
-                            <input type="number" name="lvl" id="lvl" class="form-control" value="<?php echo $details["lvl"]; ?>">
-                            <div class="fc-type-1">
-                                <label for="password">Password</label>
-                                <input type="text" name="password" id="password" class="form-control" value="<?php echo $details["password"]; ?>">
-                            </div>
-                            <div class="fc-type-1">
-                                <label for="cpassword">Confirm Password</label>
-                                <input type="text" name="cpassword" id="cpassword" class="form-control" value="<?php echo $details["password"]; ?>">
-                            </div>
-                            <div style="text-align: center; width: 100%;">
-                                <button class="btn" type="submit" name="update">Update</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
+
             </div>
         </main>
     </section>
