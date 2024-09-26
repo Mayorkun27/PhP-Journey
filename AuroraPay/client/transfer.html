@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aurora Pay</title>
+
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../responsiveness.css">
+
+    <link rel="stylesheet" href="../resources/bootstrap/bootstrap.css">
+    <link rel="stylesheet" href="../resources/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="../resources/fontawesome-free-6.4.2-web/css/all.css">
+    <link rel="stylesheet" href="../resources/tabler-icons/webfont/tabler-icons.min.css">
+
+</head>
+<body>
+    
+
+    <div class="overflow-x-hidden">
+
+        <div class="container-fluid px-3">
+
+            <div class="row align-items-center justify-content-between position-relative" style="height: 100vh;">
+
+                <nav class="col-lg-2 d-lg-flex flex-column justify-content-between d-none sidebar">
+                    <div class="mt-2 d-flex gap-5 flex-column w-100 justify-content-between">
+                        <a href="" class="navbar-brand text-center">AuroraPay</a>
+                        <ul class="navbar-nav gap-3 w-100">
+                            <li class="p-3 py-2"><a class="nav-link p-0" href="dashboard.html"><i class="fa fa-home"></i><span>Home</span></a></li>
+                            <li class="p-3 py-2 active"><a class="nav-link p-0" href="#"><i class="fa fa-arrow-right-arrow-left"></i><span>Transfer</span></a></li>
+                            <li class="p-3 py-2"><a class="nav-link p-0" href="#"><i class="fa fa-money-bill"></i><span>Deposit</span></a></li>
+                            <li class="p-3 py-2"><a class="nav-link p-0" href="#"><i class="fa fa-file-invoice"></i><span>Transactions</span></a></li>
+                            <li class="p-3 py-2"><a class="nav-link p-0" href="#"><i class="fa fa-user"></i><span>Profile</span></a></li>
+                        </ul>
+                    </div>
+                    <a href="#" class="ms-3 logout nav-link pb-3"><i class="ti ti-logout"></i><span>Logout</span></a>
+                </nav>
+
+                <main class="col-lg-10 pt-3">
+
+                    <header class="py-3 px-3 mb-3 d-flex align-items-center justify-content-between">
+                        <h3 class="m-0 p-0">Good Day</h3>
+                        <a href="#" class="nav-link">
+                            <div class="profile d-flex align-items-center gap-2" style="width: max-content;">
+                                <h6 class="m-0 p-0 text-end" id="userName" style="width: 120px; white-space: nowrap; overflow: scroll;">Oluwamayokun</h6>
+                                <img src="../images/img1.png" alt="..." class="img-fluid bg-light" width="40px" height="40px" style="border-radius: 50%; clip-path: circle(); object-fit: cover;">
+                            </div>
+                        </a>
+                    </header>
+
+                    <section class="content pb-lg-0 pb-5">
+
+                        <form method="post" class="row withdraw pb-5">
+
+                            <!-- QUOTE -->
+                            <div id="setForm1">
+                                <div class="update">
+                                    <h4>Amount</h4>
+                                    <h1 class="step-count">1</h1>
+                                    <div class="gencol w-100 d-flex flex-lg-row flex-column gap-3 justify-content-between align-items-center text-center mx-auto">
+                                        <!-- <label for="sendAmount">I'm sending</label> -->
+                                        <input type="number" placeholder="Amount Here" id="sendAmount" name="sendAmount" class="form-control">
+                                    </div>
+                                    <button class="btn add-btn mx-auto" type="button">Next</button>
+                                </div>
+                            </div>
+
+                            <!-- RECEPIENT DETAILS -->
+                            <div id="setForm2">
+                                <div class="update">
+                                    <h4>Recepient Details</h4>
+                                    <h1 class="step-count">2</h1>
+                                    <div class="gencol w-100 d-flex flex-lg-row flex-column gap-3 justify-content-between align-items-center mx-auto">
+                                        <!-- <label for="receiverId">Receipient Account</label> -->
+                                        <input type="number" maxlength="10" placeholder="Recepient Account Number" id="receiverId" name="receiverId" class="form-control">
+                                    </div>
+                                    <div class="gencol w-100 d-flex flex-lg-row flex-column gap-3 justify-content-between align-items-center mx-auto">
+                                        <!-- <label for="receiverBank">Receipient Bank</label> -->
+                                        <select id="receiverBank" name="receiverBank" class="form-control ps-2"></select>
+                                    </div>
+                                    <div class="d-flex w-100 justify-content-center align-items-center mt-3">
+                                        <button class="btn add-btn" type="button">Edit</button>
+                                        <button class="btn add-btn" type="button">Next</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- QUOTE CONFIRMATION -->
+                            <div id="setForm3">
+                                <div class="update">
+                                    <h4>Confirm Transaction</h4>
+                                    <h1 class="step-count">3</h1>
+                                    <p class="p-0 w-100 m-0 d-flex flex-lg-row flex-md-row flex-column align-items-center justify-content-between">
+                                        <span>Receipient Account Number</span>
+                                        <b id="confirmAccountNumber">708 169 6490</b>
+                                    </p>
+                                    <p class="p-0 w-100 m-0 d-flex flex-lg-row flex-md-row flex-column align-items-center justify-content-between">
+                                        <span>Receipient Bank</span>
+                                        <b id="confirmBank">Booster Bank</b>
+                                    </p>
+                                    <p class="p-0 w-100 m-0 d-flex flex-lg-row flex-md-row flex-column align-items-center justify-content-between">
+                                        <span>Receipient Name</span>
+                                        <b id="confirmName">Sodiq Apai Tantoloun</b>
+                                    </p>
+                                    <p class="p-0 w-100 m-0 d-flex flex-lg-row flex-md-row flex-column align-items-center justify-content-between">
+                                        <span>Amount to be Paid</span>
+                                        <b id="confirmAmount">$ 1500</b>
+                                    </p>
+                                    <div class="d-flex w-100 justify-content-center align-items-center mt-3">
+                                        <button class="btn add-btn" type="button">Edit</button>
+                                        <button class="btn add-btn" type="button">Continue</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- PAYMENT INITIALIZED -->
+                            <div id="setForm4">
+                                <div class="update">
+                                    <h1 class="step-count">4</h1>
+                                    <h4>Transaction Authorization</h4>
+                                    <div class="d-flex gencol gap-2 justify-content-center" id="pinInputs">
+                                        <input type="password" id="pinPart1" name="pin" maxlength="1" class="form-control text-center" style="height: 50px; width: 50px; text-indent: 0px;">
+                                        <input type="password" id="pinPart2" name="pin" maxlength="1" class="form-control text-center" style="height: 50px; width: 50px; text-indent: 0px;">
+                                        <input type="password" id="pinPart3" name="pin" maxlength="1" class="form-control text-center" style="height: 50px; width: 50px; text-indent: 0px;">
+                                        <input type="password" id="pinPart4" name="pin" maxlength="1" class="form-control text-center" style="height: 50px; width: 50px; text-indent: 0px;">
+                                    </div>
+                                    <button class="btn add-btn mx-auto px-4 mt-3" type="submit" name="completeTransfer">Pay</button>
+                                </div>
+                            </div>
+
+                        </form>
+
+
+                        <!-- <div class="profile-options">
+
+
+                            <div class="loader-container">
+                                <div class="loader">
+                                    <div class="bar1"></div>
+                                    <div class="bar2"></div>
+                                    <div class="bar3"></div>
+                                    <div class="bar4"></div>
+                                    <div class="bar5"></div>
+                                    <div class="bar6"></div>
+                                    <div class="bar7"></div>
+                                    <div class="bar8"></div>
+                                    <div class="bar9"></div>
+                                    <div class="bar10"></div>
+                                    <div class="bar11"></div>
+                                    <div class="bar12"></div>
+                                </div>
+                            </div>
+
+                            <div class="toast-container p-3">
+                                <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                                    <div class="toast-body text-center d-flex flex-column gap-3">
+                                        <div>
+                                            <img src="https://img.icons8.com/?size=100&id=4JmJwTZOPITk&format=png&color=000000" alt="..." class="img-fluid">
+                                            <h6>Success!</h6>
+                                            <p class="m-0 p-0" id="transactId"></p>
+                                        </div>
+                                        <button class="btn add-btn" onclick="window.location.href = 'dashboard.html'">Done</button>
+                                        <small class="d-flex justify-content-center align-items-center flex-column"><span>You can check the transaction status on the</span> <a href="transactions.html">transactions page</a></small>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="toast-container2 p-3">
+                                <div id="liveToast2" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                                    <div class="toast-body text-center d-flex flex-column gap-3">
+                                        <img src="offlines/tabler-icons/png/exclamation-circle.png" alt="..." width="100px" class="img-fluid mx-auto">
+                                        <h5 id="errorInfo">Incorrect Pin, Please try again!</h5>
+                                        <button type="button" class="btn add-btn" data-bs-dismiss="toast" aria-label="Close" onclick="document.querySelector('.toast-container2').style.display = 'none';">Ok</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button type="button" id="btnnnnn" class="btn add-btn d-none" data-bs-toggle="modal" data-bs-target="#userInfoConfirm">Open Authentication Modal</button>
+
+                            <div class="modal toggle fade" id="userInfoConfirm" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="userInfoConfirmLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="userInfoConfirmLabel">Transaction Authentication</h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" id="closeModal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form class="row d-flex flex-row justify-content-between">
+                                                <div class="col-12 flex-column authSections gap-3" id="authModalSect1">
+                                                    <h5>Please enter your OTP1 to verify this transaction</h5>
+                                                    <div class="d-flex gencol gap-2 justify-content-center" id="pinInputs">
+                                                        <input type="password" id="authPin1-1" name="pin" maxlength="1" class="form-control text-center mb-3" style="height: 50px; width: 50px; text-indent: 0px;">
+                                                        <input type="password" id="authPin1-2" name="pin" maxlength="1" class="form-control text-center mb-3" style="height: 50px; width: 50px; text-indent: 0px;">
+                                                        <input type="password" id="authPin1-3" name="pin" maxlength="1" class="form-control text-center mb-3" style="height: 50px; width: 50px; text-indent: 0px;">
+                                                        <input type="password" id="authPin1-4" name="pin" maxlength="1" class="form-control text-center mb-3" style="height: 50px; width: 50px; text-indent: 0px;">
+                                                    </div>
+                                                    <p>Please contact the <a href="#">admin</a> to get the OTP1 to authorize this transaction</p>
+                                                    <div class="mt-3 text-center d-flex justify-content-between">
+                                                        <button class="btn add-btn add-btn1" type="button" data-bs-dismiss="modal">Close</button>
+                                                        <a class="nav-link" href="#authModalSect2">
+                                                            <button class="btn add-btn" type="button">Next</button>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 flex-column authSections gap-3" id="authModalSect2">
+                                                    <h5>Please enter your OTP2 to verify this transaction</h5>
+                                                    <div class="d-flex gencol gap-2 justify-content-center" id="pinInputs">
+                                                        <input type="password" id="authPin2-1" name="pin" maxlength="1" class="form-control text-center mb-3" style="height: 50px; width: 50px; text-indent: 0px;">
+                                                        <input type="password" id="authPin2-2" name="pin" maxlength="1" class="form-control text-center mb-3" style="height: 50px; width: 50px; text-indent: 0px;">
+                                                        <input type="password" id="authPin2-3" name="pin" maxlength="1" class="form-control text-center mb-3" style="height: 50px; width: 50px; text-indent: 0px;">
+                                                        <input type="password" id="authPin2-4" name="pin" maxlength="1" class="form-control text-center mb-3" style="height: 50px; width: 50px; text-indent: 0px;">
+                                                    </div>
+                                                    <p>Please contact the <a href="#">admin</a> to get the OTP2 to authorize this transaction</p>
+                                                    <div class="mt-3 text-center d-flex justify-content-between">
+                                                        <a class="nav-link" href="#authModalSect1">
+                                                            <button class="btn add-btn add-btn1" type="button">Back</button>
+                                                        </a>
+                                                        <a class="nav-link" href="#authModalSect3">
+                                                            <button class="btn add-btn" type="button">Next</button>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 flex-column authSections gap-3"  id="authModalSect3">
+                                                    <h5>Please enter your OTP3 to verify this transaction</h5>
+                                                    <div class="d-flex gencol gap-2 justify-content-center" id="pinInputs">
+                                                        <input type="password" id="authPin3-1" name="pin" maxlength="1" class="form-control text-center mb-3" style="height: 50px; width: 50px; text-indent: 0px;">
+                                                        <input type="password" id="authPin3-2" name="pin" maxlength="1" class="form-control text-center mb-3" style="height: 50px; width: 50px; text-indent: 0px;">
+                                                        <input type="password" id="authPin3-3" name="pin" maxlength="1" class="form-control text-center mb-3" style="height: 50px; width: 50px; text-indent: 0px;">
+                                                        <input type="password" id="authPin3-4" name="pin" maxlength="1" class="form-control text-center mb-3" style="height: 50px; width: 50px; text-indent: 0px;">
+                                                    </div>
+                                                    <p>Please contact the <a href="#">admin</a> to get the OTP3 to authorize this transaction</p>
+                                                    <div class="mt-3 text-center d-flex justify-content-between">
+                                                        <a class="nav-link" href="#authModalSect2">
+                                                            <button class="btn add-btn add-btn1" type="button">Back</button>
+                                                        </a>
+                                                        <button class="btn add-btn" type="button" id="authCheckBtn">Finish</button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div> -->
+
+                    </section>
+
+                    <nav class="col-12 bottombar d-lg-none">
+                        <ul class="navbar-nav w-100 d-flex flex-row gap-2 justify-content-between py-1 px-md-5">
+                            <a href="dashboard.html" class="nav-link">
+                                <i class="fa-2x fa fa-home"></i>
+                                <small>Home</small>
+                            </a>
+                            <a href="withdraw.html" class="nav-link active2">
+                                <i class="fa-2x fa fa-arrow-right-arrow-left"></i>
+                                <small>Transfer</small>
+                            </a>
+                            <a href="deposit.html" class="nav-link">
+                                <i class="fa-2x fa fa-plus"></i>
+                                <small>Deposit</small>
+                            </a>
+                            <a href="cards.html" class="nav-link">
+                                <i class="fa-2x fa fa-credit-card"></i>
+                                <small>Cards</small>
+                            </a>
+                            <a href="transactions.html" class="nav-link">
+                                <i class="fa-2x fa fa-file-invoice"></i>
+                                <small>History</small>
+                            </a>
+                        </ul>
+                    </nav>
+
+                </main>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- NAVIGATING WITH THE BUTTONS ON THE MODAL -->
+    <!-- <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const allLinks = document.querySelectorAll("#userInfoConfirm a");
+            const sections = document.querySelectorAll("form .authSections");
+        
+            // Initially hide all sections
+            sections.forEach((section) => {
+                section.style.display = "none";
+            });
+        
+            allLinks.forEach((link) => {
+                link.addEventListener("click", function (event) {
+                    event.preventDefault();
+                    const targetId = link.getAttribute('href').substring(1); // Get the target ID without the '#'
+        
+                    // Hide all sections
+                    sections.forEach((section) => {
+                        section.style.display = "none";
+                    });
+        
+                    // Show the target section
+                    document.getElementById(targetId).style.display = "flex";
+        
+                    // Remove 'activeState' class from all links
+                    allLinks.forEach((link) => {
+                        link.classList.remove("activeState");
+                    });
+        
+                    // Add 'activeState' class to the clicked link
+                    link.classList.add("activeState");
+                });
+            });
+        
+            // Show the first section by default
+            if (sections.length > 0) {
+                sections[0].style.display = "flex";
+                allLinks[0].classList.add("activeState");
+            }
+        });
+    </script> -->
+
+    <script src="../resources/bootstrap/bootstrap.js"></script>
+    <script src="../resources/bootstrap/bootstrap.js"></script>
+
+    <script src="../script.js"></script>
+
+    <!-- TO ADD BANKS TO SELECT DROPDOWN -->
+    <script>
+        const banks = [
+            "Select a bank", "ABN AMRO", "Absa Group", "Agricultural Bank of China", "ANZ Banking Group", 
+            "Axis Bank", "Banco Bradesco", "Banco de la Nación Argentina", 
+            "Banco do Brasil", "Banco Santander", "Banco Santander Río", "Banamex", 
+            "Bank of America", "Bank of China", "Bank of East Asia", "Bank of Montreal", 
+            "Barclays", "BBVA", "BBVA Bancomer", "Booster Bank", "BNP Paribas", "CIBC", "China Construction Bank", 
+            "CIMB Group", "Citigroup", "Commerzbank", "Commonwealth Bank", "Credit Suisse", 
+            "Crédit Agricole", "Danske Bank", "DBS Bank", "Deutsche Bank", "Ecobank", 
+            "FirstRand", "Guaranty Trust Bank", "Hang Seng Bank", "HDFC Bank", "HSBC", 
+            "ICICI Bank", "ING Group", "Intesa Sanpaolo", "Itaú Unibanco", 
+            "JPMorgan Chase", "Kiwibank", "Lloyds Banking Group", "Malayan Banking Berhad (Maybank)", 
+            "Mitsubishi UFJ Financial Group", "Mizuho Financial Group", "National Australia Bank", 
+            "National Bank of Canada", "Nedbank", "Nordea", "OCBC Bank", "Public Bank Berhad", 
+            "Royal Bank of Canada", "Royal Bank of Scotland", "Santander Brasil", 
+            "Scotiabank", "SEB", "Société Générale", "Standard Bank", "Standard Chartered", 
+            "State Bank of India", "Sumitomo Mitsui Financial Group", "SBI Holdings", 
+            "Toronto-Dominion Bank", "UBS", "UniCredit", "United Overseas Bank", 
+            "Wells Fargo", "Westpac", "Zenith Bank",
+            "Bank of New York Mellon", "Goldman Sachs", "Morgan Stanley", "Capital One", "American Express", "PNC Financial Services", "U.S. Bancorp", "SunTrust Banks", "Fifth Third Bank",
+            "Regions Financial Corporation", "KeyCorp", "M&T Bank", "Huntington Bancshares", "BB&T", "Ally Financial", "Santander Bank", "BMO Harris Bank", "Union Bank", "First Republic Bank",
+            "Bank of the West", "Citizens Financial Group", "Comerica", "New York Community Bancorp", "Zions Bancorporation", "People's United Financial", "Synovus Financial", "First Hawaiian Bank", "East West Bank", "Cullen/Frost Bankers",
+            "City National Bank", "BankUnited", "Associated Banc-Corp", "Valley National Bank", "First Interstate BancSystem", "Western Alliance Bank", "Old National Bank", "Webster Bank", "Umpqua Bank", "Fulton Financial Corporation",
+            "PacWest Bancorp", "Washington Federal", "Columbia Bank", "Texas Capital Bank", "Home BancShares", "Hancock Whitney Bank", "South State Bank", "Great Western Bank",
+            "BancorpSouth Bank", "Atlantic Union Bank", "Pinnacle Financial Partners", "Arvest Bank", "First Citizens Bank", "Bank OZK", "First Financial Bank", "Prosperity Bank", "First National Bank of Omaha", "Cadence Bank",
+            "Heartland Financial USA", "Trustmark National Bank", "UMB Bank", "FNB Corporation", "Simmons Bank", "TowneBank", "NBT Bank", "First Bank", "Glacier Bancorp", "First Community Bank",
+            "Horizon Bank", "Tri Counties Bank", "Old Point National Bank", "Sterling National Bank", "Bank of Marin", "Peoples Bank", "First Merchants Bank", "Peoples State Bank", "PlainsCapital Bank",
+            "Texas Bank and Trust", "United Community Bank", "Centier Bank", "Investors Bank", "S&T Bank", "ServisFirst Bank", "Citywide Banks", "Bank of Hawaii", "Bank of Springfield",
+            "FirstBank Holding Co.", "Pacific Premier Bank", "Renasant Bank", "Bankers Trust", "MidFirst Bank", "Haverhill Bank", "TIAA Bank", "Sandy Spring Bank", "Chemical Bank", "Flagstar Bank",
+            "Nicolet National Bank", "Pinnacle Bank", "MidWestOne Bank", "First National Bank and Trust", "Independent Bank", "Mechanics Bank", "Inland Bank and Trust", "Third Federal Savings and Loan", "Androscoggin Bank", "First Mid Bank & Trust",
+            "First National Bank Alaska", "Farmers & Merchants Bank", "First National Bank in Sioux Falls", "Pioneer Bank", "American National Bank", "Southwest Bank", "Peoples Bank of Alabama", "Peoples National Bank", "Great Southern Bank",
+            "City Bank", "Summit Bank", "Colony Bank", "Seacoast Bank", "First Southern Bank", "First State Bank", "Guaranty Bank", "American State Bank", "Bank of Commerce", "American Heritage Bank",
+            "Central Bank", "Stock Yards Bank & Trust", "BankFirst", "First Mid-Illinois Bank & Trust", "Republic Bank", "Bridgewater Bank", "Third Coast Bank", "American Bank of Commerce", "First Choice Bank", "Farmers State Bank",
+            "First Liberty National Bank", "First Savings Bank", "MainSource Bank", "Centennial Bank", "City National Bank of Florida", "First International Bank & Trust", "First Financial Bankshares",
+            "First United Bank", "First Western Trust Bank", "HomeStreet Bank", "Independent Bank Group", "Lakeland Bank", "LegacyTexas Bank", "Merchants Bank", "MidWestOne Financial Group", "Pacific Continental Bank",
+            "Peoples Security Bank & Trust", "Southside Bank", "Southern First Bank", "Summit State Bank", "Triumph Bank", "United Bank", "United National Bank",
+            "University Federal Credit Union", "Westamerica Bank", "Western State Bank", "Wilson Bank & Trust", "Wings Financial Credit Union", "Woodforest National Bank", "ZB, National Association", "Zions First National Bank", "1st Source Bank", "Alerus Financial",
+            "Altabank", "American First National Bank", "Ameris Bank", "Bank of Ann Arbor", "Bank of Clarke County", "Bank of George", "Bank of Idaho", "Bank of Labor", "Bank of Missouri", "Bank of San Francisco", 
+            "Bank of Stockton", "BankPlus", "Bremer Bank", "Bridge Bank", "Byline Bank", "California Bank & Trust", "Cambridge Trust Company", "Camden National Bank", "Capital City Bank", "Capitol Federal Savings Bank", 
+            "Cardinal Bank", "Carter Bank & Trust", "Cathay Bank", "Central Bank of Boone County", "Central Bank of the Midwest", "Central Pacific Bank", "CIBC Bank USA", "City National Bank of West Virginia", 
+            "Community Bank", "Community Bank, N.A.", "Community First Bank", "Community Trust Bank", "ConnectOne Bank", "Consumers Credit Union", "Crestmark Bank", "Dacotah Bank", "Dollar Bank", "Eastern Bank", 
+            "Enterprise Bank & Trust", "ESL Federal Credit Union", "Evolve Bank & Trust", "Farm Bureau Bank", "Fidelity Bank", "Financial Federal Bank", "First American Bank", "First Bank Financial Centre", 
+            "First Citizens Community Bank", "First Commonwealth Bank", "First Federal Bank", "First Midwest Bank", "First Republic Bank", "First Security Bank", "Frost Bank", "Fulton Bank", "Gateway First Bank", 
+            "Great Western Bank", "Hanmi Bank", "Hawaii National Bank", "Heartland Bank and Trust Company", "Heritage Bank", "HSBC Bank USA", "Huntington National Bank", "IberiaBank", "International Bank of Commerce", 
+            "Intrust Bank", "John Marshall Bank", "KeyBank", "Lake City Bank", "Liberty Bank", "Luther Burbank Savings", "Macatawa Bank", "Mercantile Bank of Michigan", "Midland States Bank", "New York Community Bank", 
+            "Northwest Bank", "OneWest Bank", "Origin Bank", "Peoples United Bank", "Popular Bank", "Rabo AgriFinance", "Raymond James Bank", "River City Bank", "Rockland Trust", "State Bank of Cross Plains", 
+            "Sterling Bank & Trust", "Sunflower Bank", "Tri Counties Bank", "TriState Capital Bank", "Union Bank", "Unity Bank", "Veritex Community Bank", "Wintrust Bank"
+        ];
+
+        function createSelectOptions(banks, defaultItem) {
+            const select = document.getElementById('receiverBank');
+                banks.sort().forEach(bank => {
+                const option = document.createElement('option');
+                defaultItem = bank;
+                option.value = bank;
+                option.textContent = bank;
+                if (defaultItem == "Select a bank") {
+                    option.style.color = "#aca9a9a";
+                    option.value = defaultItem;
+                    option.textContent = defaultItem;
+                    option.setAttribute("selected", "true");
+                }
+                select.appendChild(option);
+            });
+        }
+        createSelectOptions(banks);
+    </script>
+
+    <!-- NAVIGATING AND COLLATING DATA FROM THE FORM -->
+    <!-- <script>
+        
+        document.addEventListener('DOMContentLoaded', function () {
+            const forms = document.querySelectorAll('.update');
+            const navLinks = document.querySelectorAll('.ddddd .nav-link');
+
+            let quoteData = {}; // Object to store the gathered data
+            
+
+            forms.forEach((form, index) => {
+                form.addEventListener('submit', (event) => {
+                    event.preventDefault(); // Prevent form submission from refreshing the page
+
+                    // Capture data based on the form being submitted
+                    if (index === 0) {
+                        // Capture data from the "Quote" form
+                        quoteData.amount = document.getElementById('sendAmount').value;
+                        console.log(quoteData.amount);
+                        
+                    } else if (index === 1) {
+                        // Capture data from the "Recipient Details" form
+                        quoteData.accountNumber = document.getElementById('receiverId').value;
+                        console.log(quoteData.accountNumber, quoteData.bank, quoteData.amount, quoteData.name);
+                        quoteData.bank = document.getElementById('receiverBank').value;
+                        quoteData.name = "Sodiq Apai Tantoloun";
+                        
+                        document.getElementById('confirmAccountNumber').innerHTML = formatAccountNumber(quoteData.accountNumber);
+                        document.getElementById('confirmBank').innerHTML = quoteData.bank;
+                        document.getElementById('confirmName').innerHTML = quoteData.name;
+                        document.getElementById('confirmAmount').innerHTML = `$${quoteData.amount}`;
+
+                        const loaderContainer = document.querySelector('.loader-container');
+                        loaderContainer.style.display = "flex";
+                        setTimeout(() => {
+                            loaderContainer.style.display = "none";
+                        }, 2000)
+                    }
+
+                    function formatAccountNumber(number) {
+                        number = number.replace(/\D/g, ''); // Remove any non-digit characters
+
+                        // Format the number as XXX XXX XXXX
+                        return number.replace(/(\d{3})(\d{3})(\d{4})/, '$1 $2 $3');
+                    }
+
+
+                    // Directly show the checkmark when the form is submitted
+                    const checkmark = navLinks[index].querySelector('.fa-check-circle');
+                    checkmark.classList.remove('d-none'); // Show the checkmark
+
+                    // Optionally, move to the next form or section
+                    const nextLink = navLinks[index + 1];
+                    if (nextLink) {
+                        nextLink.click(); // Simulate a click to navigate to the next form
+                    }
+                });
+            });
+        });
+
+    </script> -->
+
+    <!-- HANDLING PIN -->
+    <script>
+       
+        document.addEventListener('DOMContentLoaded', function () {
+            const pinInputs = document.querySelectorAll('#pinInputs input[type="password"]');
+            const startAuthBtn = document.getElementById("startAuthBtn");
+            const authCheckBtn = document.getElementById("authCheckBtn");
+            const loaderContainer = document.querySelector(".loader-container");
+            const toastLiveExample = document.getElementById('liveToast');
+            const toastLiveExample2 = document.getElementById('liveToast2');
+
+            // AUTOMATICALLY MOVE TO THE NEXT INPUT WHEN THE CURRENT INPUT IS FILLED
+            pinInputs.forEach((input, index) => {
+                input.addEventListener('input', function () {
+                    if (input.value.length === 1 && index < pinInputs.length - 1) {
+                        pinInputs[index + 1].focus();
+                    }
+                });
+
+                input.addEventListener('keydown', function (event) {
+                    if (event.key === 'Backspace' && input.value.length === 0 && index > 0) {
+                        pinInputs[index - 1].focus();
+                    }
+                });
+            });
+
+            const originalPin = "0000"; // Replace with the actual PIN
+            startAuthBtn.addEventListener("click", () => {
+
+                loaderContainer.style.display = "flex";
+                
+                // Collate the data from all four PIN inputs
+                // const pinPart1 = document.getElementById("pinPart1").value;
+                // const pinPart2 = document.getElementById("pinPart2").value;
+                // const pinPart3 = document.getElementById("pinPart3").value;
+                // const pinPart4 = document.getElementById("pinPart4").value;
+                // let collated = pinPart1 + pinPart2 + pinPart3 + pinPart4;
+                const collated = Array.from(pinInputs).map(input => input.value).join('');
+                
+                // CHECK THE ORIGINAL PIN WITH FILLED PIN WHEN THE BUTTON IS CLICKED
+                if (originalPin === collated) { // IF PIN MATCHES
+                    // DISPLAY THE AUTHENTICATION MODAL
+                    setTimeout(() => {
+                        loaderContainer.style.display = "none";
+                        document.getElementById("btnnnnn").click()
+                    }, 5000);
+                } else { // If PIN does not match
+                    setTimeout(() => {
+                        loaderContainer.style.display = "none";
+                        const toastBootstrap2 = bootstrap.Toast.getOrCreateInstance(toastLiveExample2);
+                        toastBootstrap2.show();
+                        document.querySelector(".toast-container2").style.display = "flex"; // Show the error toast
+                        setTimeout(() => {
+                            document.querySelector(".toast-container2").style.display = "none";
+                        }, 5000);
+                    }, 3000);
+                }
+                
+                const isCorrectAuth = true; // ADD LOGIC OF AUTHENTICATING HERE
+                authCheckBtn.addEventListener("click", () => {
+                    loaderContainer.style.display = "flex";
+                    if (isCorrectAuth) {
+                        const transactionId = generateTransactionId();
+                        document.getElementById("transactId").innerHTML = `Transaction ID: ${transactionId}`;
+                        setTimeout(() => {
+                            document.getElementById("closeModal").click();
+                            const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample);
+                            toastBootstrap.show();
+                            document.querySelector(".toast-container").style.display = "flex"; // Show the success toast
+                            setTimeout(() => {
+                                document.querySelector(".toast-container").style.display = "none";
+                                window.location.href = "dashboard.html";
+                            }, 5000);
+                        }, 3000);
+                    } else {
+                        loaderContainer.style.display = "none";
+                        const toastBootstrap2 = bootstrap.Toast.getOrCreateInstance(toastLiveExample2);
+                        toastBootstrap2.show();
+                        document.querySelector(".toast-container2").style.display = "flex"; // Show the error toast
+                        document.querySelector(".toast-container2 #errorInfo").innerText = "Failed to Autheticate Transaction!"; // Show the error toast
+                        setTimeout(() => {
+                            document.querySelector(".toast-container2").style.display = "none";
+                        }, 5000);
+                    }
+                })
+            });
+            
+            function generateTransactionId() {
+                const timestamp = Date.now().toString(36).toUpperCase(); // Base36 encoding of the current time
+                const randomString = Math.random().toString(36).substring(2, 8).toUpperCase(); // Random 6-character string
+                return `TXN-${timestamp}-${randomString}`;
+            }
+        });
+
+
+    </script>
+
+</body>
+</html>

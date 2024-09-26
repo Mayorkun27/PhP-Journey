@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aurora Pay</title>
+
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../responsiveness.css">
+
+    <link rel="stylesheet" href="../resources/bootstrap/bootstrap.css">
+    <link rel="stylesheet" href="../resources/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="../resources/fontawesome-free-6.4.2-web/css/all.css">
+    <link rel="stylesheet" href="../resources/tabler-icons/webfont/tabler-icons.min.css">
+
+</head>
+<body>
+    
+
+    <div class="overflow-x-hidden">
+
+        <div class="container-fluid px-3">
+
+            <div class="row align-items-center justify-content-between position-relative" style="height: 100vh;">
+
+                <nav class="col-lg-2 d-lg-flex flex-column justify-content-between d-none sidebar">
+                    <div class="mt-2 d-flex gap-5 flex-column w-100 justify-content-between">
+                        <a href="" class="navbar-brand text-center">AuroraPay</a>
+                        <ul class="navbar-nav gap-3 w-100">
+                            <li class="p-3 py-2 active"><a class="nav-link p-0" href="#"><i class="fa fa-home"></i><span>Home</span></a></li>
+                            <li class="p-3 py-2"><a class="nav-link p-0" href="#"><i class="fa fa-arrow-right-arrow-left"></i><span>Transfer</span></a></li>
+                            <li class="p-3 py-2"><a class="nav-link p-0" href="#"><i class="fa fa-money-bill"></i><span>Deposit</span></a></li>
+                            <li class="p-3 py-2"><a class="nav-link p-0" href="#"><i class="fa fa-file-invoice"></i><span>Transactions</span></a></li>
+                            <li class="p-3 py-2"><a class="nav-link p-0" href="#"><i class="fa fa-user"></i><span>Profile</span></a></li>
+                        </ul>
+                    </div>
+                    <a href="#" class="ms-3 logout nav-link pb-3"><i class="ti ti-logout"></i><span>Logout</span></a>
+                </nav>
+
+                <main class="col-lg-10 pt-3">
+
+                    <header class="py-3 px-3 mb-3 d-flex align-items-center justify-content-between">
+                        <h3 class="m-0 p-0">Good Day</h3>
+                        <a href="#" class="nav-link">
+                            <div class="profile d-flex align-items-center gap-2" style="width: max-content;">
+                                <h6 class="m-0 p-0 text-end" id="userName" style="width: 120px; white-space: nowrap; overflow: scroll;">Oluwamayokun</h6>
+                                <img src="../images/img1.png" alt="..." class="img-fluid bg-light" width="40px" height="40px" style="border-radius: 50%; clip-path: circle(); object-fit: cover;">
+                            </div>
+                        </a>
+                    </header>
+
+
+                    <section class="content pb-lg-0 pb-5 px-2">
+
+                        <!-- MAIN -->
+                        <div class="row">
+
+                            <div class="col-lg-6 col-md-8 col-12 my-3">
+                                <div class="card home-card h-100 p-4 d-flex gap-3 flex-column">
+                                    <div class="d-flex justify-content-between">
+                                        <div class="d-grid gap-2">
+                                            <span class="redirect">Available Balance</span>
+                                            <div class="d-flex gap-3 align-items-center">
+                                                <h3 class="fw-bold m-0" id="balance">$2,000.09</h3>
+                                                <i class="ti ti-eye fs-5" id="visibility" style="cursor: pointer;"></i>
+                                            </div>
+                                        </div>
+                                        <a href="transactions.html" class="redirect">Transaction History <i class="fa fa-chevron-right ms-1" style="font-size: 8px;"></i></a>
+                                    </div>
+                                    <div class="d-flex gap-2 justify-content-end align-items-end">
+                                        <a href="deposit.html" class="nav-link">
+                                            <button class="add-btn btn"><span>Add Money</span></button>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6 my-3 d-flex flex-column justify-content-between">
+                                <div class="card home-card p-3">
+                                    <div class="home-card-2 d-flex justify-content-between align-items-center" style="line-height: normal;">
+                                        <p class="redirect m-0">Account Number</p>
+                                        <div class="d-flex gap-3 align-items-center">
+                                            <h5 class="fw-bold m-0" id="accId">708 169 6490</h5>
+                                            <div class="position-relative">
+                                                <small class="copied">Copied</small>
+                                                <i class="ti ti-copy fs-5" id="CopyIcon" style="cursor: pointer; rotate: 180deg;"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card parent-card px-4 py-2 d-flex flex-row justify-content-between gap-1 align-items-center">
+                                    <div class="d-flex gap-1 align-items-center">
+                                        <i class="fa fa-exclamation-circle"></i>
+                                        <span>KYC not verified</span>
+                                    </div>
+                                    <button class="btn add-btn"><span>Verify Now!</span></button>
+                                </div>
+                            </div>
+
+                        </div>
+
+                            <!-- RECENTS -->
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="table-responsive transaction-table mt-3 p-3">
+                                        <table class="table table-hover">
+                                            <div class="table-top" style="box-shadow: none !important;">
+                                                <h4 class="m-0 p-0 text-start">Recent Transactions</h4>
+                                            </div>
+                                            <tbody>
+                                                <tr>
+                                                    <td class="d-flex gap-2 align-items-center">
+                                                        <i class="fa fa-arrow-up"></i>
+                                                        <div class="d-grid">
+                                                            <span id="transactType">Transfer</span>
+                                                            <small class="redirect">Aug 24 2024 15:06:00PM</small>
+                                                        </div>
+                                                    </td>
+                                                    <td class="amount">-$<span id="transactAmount">3000</span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="d-flex gap-2 align-items-center">
+                                                        <i class="fa fa-arrow-down"></i>
+                                                        <div class="d-grid">
+                                                            <span id="transactType">Deposit</span>
+                                                            <small class="redirect">Aug 24 2024 15:06:00PM</small>
+                                                        </div>
+                                                    </td>
+                                                    <td class="amount">+$<span id="transactAmount">3000</span></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- QUICK SERVICES -->
+                            <div class="row py-4">
+                                <div class="col-lg-2 col-md-3 col-4 my-4">
+                                    <a href="withdraw.html" class="nav-link">
+                                        <div class="card quick-card p-3">
+                                            <i class="fa fa-arrow-right-arrow-left"></i>
+                                            <span>Transfer</span>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="col-lg-2 col-md-3 col-4 my-4">
+                                    <a href="deposit.html" class="nav-link">
+                                        <div class="card quick-card p-3">
+                                            <i class="fa fa-arrow-down-long"></i>
+                                            <span>Deposit</span>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="col-lg-2 col-md-3 col-4 my-4">
+                                    <div class="card quick-card p-3">
+                                        <i class="fa fa-lightbulb"></i>
+                                        <span>Electricity</span>
+                                    </div>
+                                </div>
+                                <div class="col-lg-2 col-md-3 col-4 my-4">
+                                    <div class="card quick-card p-3">
+                                        <i class="fa fa-tv"></i>
+                                        <span>Cable Tv</span>
+                                    </div>
+                                </div>
+                                <div class="col-lg-2 col-md-3 col-4 my-4">
+                                    <div class="card quick-card p-3">
+                                        <i class="fa fa-credit-card"></i>
+                                        <span>Bank Card</span>
+                                    </div>
+                                </div>
+                                <div class="col-lg-2 col-md-3 col-4 my-4">
+                                    <div class="card quick-card p-3">
+                                        <i class="fa fa-book-open"></i>
+                                        <span>Education</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </section>
+
+                </main>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    
+    <script src="../resources/bootstrap/bootstrap.js"></script>
+    <script src="../resources/bootstrap/bootstrap.js"></script>
+    
+    <script src="../script.js"></script>
+</body>
+</html>

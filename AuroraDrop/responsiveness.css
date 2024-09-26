@@ -1,0 +1,22 @@
+@keyframes zoom-in-out {
+    0%{
+        scale: 0.99;
+    }
+    100%{
+        scale: 1.01;
+    }
+}
+@keyframes fadeIn {
+    0%{
+        opacity: 0%;
+    }
+    20%{
+        opacity: 20%;
+    }
+    75%{
+        opacity: 100%;
+    }
+    100%{
+        opacity: 0%;
+    }
+}
