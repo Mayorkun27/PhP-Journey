@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aurora Pay</title>
+
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../responsiveness.css">
+
+    <link rel="stylesheet" href="../resources/bootstrap/bootstrap.css">
+    <link rel="stylesheet" href="../resources/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="../resources/fontawesome-free-6.4.2-web/css/all.css">
+    <link rel="stylesheet" href="../resources/tabler-icons/webfont/tabler-icons.min.css">
+
+</head>
+<body>
+    
+
+    <div class="overflow-x-hidden">
+
+        <div class="container-fluid px-3">
+
+            <div class="row align-items-center justify-content-between position-relative" style="height: 100vh;">
+
+                <nav class="col-lg-2 d-lg-flex flex-column justify-content-between d-none sidebar">
+                    <div class="mt-2 d-flex gap-5 flex-column w-100 justify-content-between">
+                        <a href="" class="navbar-brand text-center">AuroraPay</a>
+                        <ul class="navbar-nav gap-3 w-100">
+                            <li class="p-3 py-2"><a class="nav-link p-0" href="dashboard.html"><i class="fa fa-home"></i><span>Home</span></a></li>
+                            <li class="p-3 py-2"><a class="nav-link p-0" href="transfer.html"><i class="fa fa-arrow-right-arrow-left"></i><span>Transfer</span></a></li>
+                            <li class="p-3 py-2 active"><a class="nav-link p-0" href="#"><i class="fa fa-money-bill"></i><span>Deposit</span></a></li>
+                            <li class="p-3 py-2"><a class="nav-link p-0" href="#"><i class="fa fa-file-invoice"></i><span>Transactions</span></a></li>
+                            <li class="p-3 py-2"><a class="nav-link p-0" href="#"><i class="fa fa-user"></i><span>Profile</span></a></li>
+                        </ul>
+                    </div>
+                    <a href="#" class="ms-3 logout nav-link pb-3"><i class="ti ti-logout"></i><span>Logout</span></a>
+                </nav>
+
+                <main class="col-lg-10 pt-3">
+
+                    <header class="py-3 px-3 mb-3 d-flex align-items-center justify-content-between">
+                        <h3 class="m-0 p-0">Good Day</h3>
+                        <a href="#" class="nav-link">
+                            <div class="profile d-flex align-items-center gap-2" style="width: max-content;">
+                                <h6 class="m-0 p-0 text-end" id="userName" style="width: 120px; white-space: nowrap; overflow: scroll;">Oluwamayokun</h6>
+                                <img src="../images/img1.png" alt="..." class="img-fluid bg-light" width="40px" height="40px" style="border-radius: 50%; clip-path: circle(); object-fit: cover;">
+                            </div>
+                        </a>
+                    </header>
+
+                    <section class="content pb-lg-0 pb-5">
+
+                        <form method="post" class="row transfer pb-5">
+
+                            <div class="col-12 border border-black overflow-hidden p-lg-2 p-md-2 p-0">
+                                <div class="deposit-card p-3">
+                                    
+                                    <div class="card p-3 bg-transparent border-0 text-light">
+                                        <h5 class="mb-3">Specify amount to deposit</h5>
+                                        <div class="input-group">
+                                            <!-- Specify amount to deposit -->
+                                            <input type="number" class="form-control" placeholder="Enter deposit amount" style="text-indent: 10px;">
+                                            <span class="input-group-text">$</span>
+                                        </div>
+                                    </div>
+                                    <div class="card p-3 bg-transparent border-0 text-light">
+                                        <h5 class="mb-3">Choose your deposit method</h5>
+                                        <div class="d-flex justify-content-around flex-lg-row flex-md-row flex-column gap-2">
+                                            <div class="d-flex align-items-center gap-2 text-light">
+                                                <input type="radio" id="walletAddress" name="payOption">
+                                                <label for="walletAddress">Deposit to the Wallet Address</label>
+                                            </div>
+                                            <div class="d-flex align-items-center gap-2 text-light">
+                                                <input type="radio" id="qrCode" name="payOption">
+                                                <label for="qrCode">Scan QR code</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card bg-transparent border-0 d-flex flex-row justify-content-around align-items-center p-4">
+                                        <div class="form-control d-flex justify-content-center d-none cc" id="walletOption">
+                                            <input type="text" disabled value="DJxdB5h2n5HsKUWMKHScYDmqggq6MtSy7x" id="walletAdd" class="form-control">
+                                            <button class="btn fa fa-copy h-100" id="copyBtn" type="button"></button>
+                                        </div>
+                                        <div class="card-img p-3 text-center d-none" id="qrCodeOption">
+                                            <div id="qrcode"></div>
+                                        </div>
+                                    </div>
+                                    <div class="btom text-center my-4">
+                                        <button class="btn">Payment Made</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </form>
+
+                    </section>
+
+                    <nav class="col-12 bottombar d-lg-none">
+                        <ul class="navbar-nav w-100 d-flex flex-row gap-2 justify-content-between py-1 px-md-5">
+                            <a href="dashboard.html" class="nav-link">
+                                <i class="fa-2x fa fa-home"></i>
+                                <small>Home</small>
+                            </a>
+                            <a href="transfer.html" class="nav-link">
+                                <i class="fa-2x fa fa-arrow-right-arrow-left"></i>
+                                <small>Transfer</small>
+                            </a>
+                            <a href="deposit.html" class="nav-link active2">
+                                <i class="fa-2x fa fa-plus"></i>
+                                <small>Deposit</small>
+                            </a>
+                            <a href="cards.html" class="nav-link">
+                                <i class="fa-2x fa fa-credit-card"></i>
+                                <small>Cards</small>
+                            </a>
+                            <a href="transactions.html" class="nav-link">
+                                <i class="fa-2x fa fa-file-invoice"></i>
+                                <small>History</small>
+                            </a>
+                        </ul>
+                    </nav>
+
+                </main>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="../resources/bootstrap/bootstrap.js"></script>
+    <script src="../resources/bootstrap/bootstrap.js"></script>
+
+    <script>
+        let walletOption = document.getElementById("walletOption");
+        let qrCodeOption = document.getElementById("qrCodeOption");
+        
+        document.getElementById("walletAddress").addEventListener("change", () => {
+            walletOption.classList.remove("d-none")
+            qrCodeOption.classList.add("d-none")
+        });
+        
+        document.getElementById("qrCode").addEventListener("change", () => {
+            walletOption.classList.add("d-none")
+            qrCodeOption.classList.remove("d-none")
+            generateQRCode();
+        });
+        document.getElementById("copyBtn").addEventListener("click", () => {
+            navigator.clipboard.writeText(document.getElementById("walletAdd").value);
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+    <script>
+        function generateQRCode() {
+            var text = document.getElementById('walletAdd').value;
+            var qrcodeContainer = document.getElementById('qrcode');
+            
+            // Clear the previous QR code
+            qrcodeContainer.innerHTML = "";
+
+            new QRCode(qrcodeContainer, {
+                text: text,
+                width: 128,
+                height: 128
+            });
+        }
+    </script>
+
+</body>
+</html>

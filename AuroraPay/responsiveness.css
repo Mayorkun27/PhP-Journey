@@ -140,8 +140,9 @@
                     transition: scale .5s;
                 }
             }
-            .col-6{
-                border: 1px solid black;
+            .update .btn,
+            .update .btn:hover{
+                width: 50% !important;
             }
             /* .withdraw .col-6:first-child{
                 border-right: 2px solid var(--tetClr);
@@ -160,25 +161,13 @@
     }
 }
 @media (min-width: 200px) and (max-width: 767px) {
-    .withdraw{
+    .transfer{
         display: grid;
+        grid-template-columns: repeat(1, 1fr) !important;
+        gap: 2rem;
+        width: 100%;
         transform: translateX(12px);
-        grid-template-columns: 1fr !important;
-        div{
-            width: 100% !important;
-            border: none;
-        }
     }
-    .withdraw .row:first-child{
-        border-right: none !important;
-    }
-    .withdraw .row:last-child{
-        border-top: none !important;
-    }
-    .withdraw .row:nth-child(3){
-        border-top: none !important;
-        border-right: none !important;
-    } 
 }
 @media (min-width: 768px) and (max-width: 991px) {
     .parent-card .btn{

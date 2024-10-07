@@ -29,7 +29,7 @@
                         <ul class="navbar-nav gap-3 w-100">
                             <li class="p-3 py-2"><a class="nav-link p-0" href="dashboard.html"><i class="fa fa-home"></i><span>Home</span></a></li>
                             <li class="p-3 py-2 active"><a class="nav-link p-0" href="#"><i class="fa fa-arrow-right-arrow-left"></i><span>Transfer</span></a></li>
-                            <li class="p-3 py-2"><a class="nav-link p-0" href="#"><i class="fa fa-money-bill"></i><span>Deposit</span></a></li>
+                            <li class="p-3 py-2"><a class="nav-link p-0" href="deposit.html"><i class="fa fa-money-bill"></i><span>Deposit</span></a></li>
                             <li class="p-3 py-2"><a class="nav-link p-0" href="#"><i class="fa fa-file-invoice"></i><span>Transactions</span></a></li>
                             <li class="p-3 py-2"><a class="nav-link p-0" href="#"><i class="fa fa-user"></i><span>Profile</span></a></li>
                         </ul>
@@ -51,7 +51,7 @@
 
                     <section class="content pb-lg-0 pb-5">
 
-                        <form method="post" class="row withdraw pb-5">
+                        <form method="post" class="row transfer pb-5">
 
                             <!-- QUOTE -->
                             <div id="setForm1">
@@ -60,14 +60,14 @@
                                     <h1 class="step-count">1</h1>
                                     <div class="gencol w-100 d-flex flex-lg-row flex-column gap-3 justify-content-between align-items-center text-center mx-auto">
                                         <!-- <label for="sendAmount">I'm sending</label> -->
-                                        <input type="number" placeholder="Amount Here" id="sendAmount" name="sendAmount" class="form-control">
+                                        <input type="number" placeholder="Amount Here" id="sendAmount" name="sendAmount" required class="form-control">
                                     </div>
-                                    <button class="btn add-btn mx-auto" type="button">Next</button>
+                                    <button class="btn add-btn mx-auto nxtBtns" type="button">Next</button>
                                 </div>
                             </div>
 
                             <!-- RECEPIENT DETAILS -->
-                            <div id="setForm2">
+                            <div id="setForm2" class="disabled">
                                 <div class="update">
                                     <h4>Recepient Details</h4>
                                     <h1 class="step-count">2</h1>
@@ -79,15 +79,17 @@
                                         <!-- <label for="receiverBank">Receipient Bank</label> -->
                                         <select id="receiverBank" name="receiverBank" class="form-control ps-2"></select>
                                     </div>
+                                    <!-- Example for setForm2 -->
                                     <div class="d-flex w-100 justify-content-center align-items-center mt-3">
-                                        <button class="btn add-btn" type="button">Edit</button>
-                                        <button class="btn add-btn" type="button">Next</button>
+                                        <button class="btn add-btn" type="button">Back</button>
+                                        <button class="btn add-btn nxtBtns" type="button">Next</button>
                                     </div>
+
                                 </div>
                             </div>
 
                             <!-- QUOTE CONFIRMATION -->
-                            <div id="setForm3">
+                            <div id="setForm3" class="disabled">
                                 <div class="update">
                                     <h4>Confirm Transaction</h4>
                                     <h1 class="step-count">3</h1>
@@ -97,7 +99,7 @@
                                     </p>
                                     <p class="p-0 w-100 m-0 d-flex flex-lg-row flex-md-row flex-column align-items-center justify-content-between">
                                         <span>Receipient Bank</span>
-                                        <b id="confirmBank">Booster Bank</b>
+                                        <b id="confirmBank">AuraPay</b>
                                     </p>
                                     <p class="p-0 w-100 m-0 d-flex flex-lg-row flex-md-row flex-column align-items-center justify-content-between">
                                         <span>Receipient Name</span>
@@ -107,15 +109,17 @@
                                         <span>Amount to be Paid</span>
                                         <b id="confirmAmount">$ 1500</b>
                                     </p>
+                                    <!-- Example for setForm2 -->
                                     <div class="d-flex w-100 justify-content-center align-items-center mt-3">
-                                        <button class="btn add-btn" type="button">Edit</button>
-                                        <button class="btn add-btn" type="button">Continue</button>
+                                        <button class="btn add-btn" type="button">Back</button>
+                                        <button class="btn add-btn nxtBtns" type="button">Next</button>
                                     </div>
+
                                 </div>
                             </div>
 
                             <!-- PAYMENT INITIALIZED -->
-                            <div id="setForm4">
+                            <div id="setForm4" class="disabled mb-lg-0 mb-3">
                                 <div class="update">
                                     <h1 class="step-count">4</h1>
                                     <h4>Transaction Authorization</h4>
@@ -131,120 +135,6 @@
 
                         </form>
 
-
-                        <!-- <div class="profile-options">
-
-
-                            <div class="loader-container">
-                                <div class="loader">
-                                    <div class="bar1"></div>
-                                    <div class="bar2"></div>
-                                    <div class="bar3"></div>
-                                    <div class="bar4"></div>
-                                    <div class="bar5"></div>
-                                    <div class="bar6"></div>
-                                    <div class="bar7"></div>
-                                    <div class="bar8"></div>
-                                    <div class="bar9"></div>
-                                    <div class="bar10"></div>
-                                    <div class="bar11"></div>
-                                    <div class="bar12"></div>
-                                </div>
-                            </div>
-
-                            <div class="toast-container p-3">
-                                <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-                                    <div class="toast-body text-center d-flex flex-column gap-3">
-                                        <div>
-                                            <img src="https://img.icons8.com/?size=100&id=4JmJwTZOPITk&format=png&color=000000" alt="..." class="img-fluid">
-                                            <h6>Success!</h6>
-                                            <p class="m-0 p-0" id="transactId"></p>
-                                        </div>
-                                        <button class="btn add-btn" onclick="window.location.href = 'dashboard.html'">Done</button>
-                                        <small class="d-flex justify-content-center align-items-center flex-column"><span>You can check the transaction status on the</span> <a href="transactions.html">transactions page</a></small>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="toast-container2 p-3">
-                                <div id="liveToast2" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-                                    <div class="toast-body text-center d-flex flex-column gap-3">
-                                        <img src="offlines/tabler-icons/png/exclamation-circle.png" alt="..." width="100px" class="img-fluid mx-auto">
-                                        <h5 id="errorInfo">Incorrect Pin, Please try again!</h5>
-                                        <button type="button" class="btn add-btn" data-bs-dismiss="toast" aria-label="Close" onclick="document.querySelector('.toast-container2').style.display = 'none';">Ok</button>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <button type="button" id="btnnnnn" class="btn add-btn d-none" data-bs-toggle="modal" data-bs-target="#userInfoConfirm">Open Authentication Modal</button>
-
-                            <div class="modal toggle fade" id="userInfoConfirm" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="userInfoConfirmLabel" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h1 class="modal-title fs-5" id="userInfoConfirmLabel">Transaction Authentication</h1>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" id="closeModal" aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <form class="row d-flex flex-row justify-content-between">
-                                                <div class="col-12 flex-column authSections gap-3" id="authModalSect1">
-                                                    <h5>Please enter your OTP1 to verify this transaction</h5>
-                                                    <div class="d-flex gencol gap-2 justify-content-center" id="pinInputs">
-                                                        <input type="password" id="authPin1-1" name="pin" maxlength="1" class="form-control text-center mb-3" style="height: 50px; width: 50px; text-indent: 0px;">
-                                                        <input type="password" id="authPin1-2" name="pin" maxlength="1" class="form-control text-center mb-3" style="height: 50px; width: 50px; text-indent: 0px;">
-                                                        <input type="password" id="authPin1-3" name="pin" maxlength="1" class="form-control text-center mb-3" style="height: 50px; width: 50px; text-indent: 0px;">
-                                                        <input type="password" id="authPin1-4" name="pin" maxlength="1" class="form-control text-center mb-3" style="height: 50px; width: 50px; text-indent: 0px;">
-                                                    </div>
-                                                    <p>Please contact the <a href="#">admin</a> to get the OTP1 to authorize this transaction</p>
-                                                    <div class="mt-3 text-center d-flex justify-content-between">
-                                                        <button class="btn add-btn add-btn1" type="button" data-bs-dismiss="modal">Close</button>
-                                                        <a class="nav-link" href="#authModalSect2">
-                                                            <button class="btn add-btn" type="button">Next</button>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                                <div class="col-12 flex-column authSections gap-3" id="authModalSect2">
-                                                    <h5>Please enter your OTP2 to verify this transaction</h5>
-                                                    <div class="d-flex gencol gap-2 justify-content-center" id="pinInputs">
-                                                        <input type="password" id="authPin2-1" name="pin" maxlength="1" class="form-control text-center mb-3" style="height: 50px; width: 50px; text-indent: 0px;">
-                                                        <input type="password" id="authPin2-2" name="pin" maxlength="1" class="form-control text-center mb-3" style="height: 50px; width: 50px; text-indent: 0px;">
-                                                        <input type="password" id="authPin2-3" name="pin" maxlength="1" class="form-control text-center mb-3" style="height: 50px; width: 50px; text-indent: 0px;">
-                                                        <input type="password" id="authPin2-4" name="pin" maxlength="1" class="form-control text-center mb-3" style="height: 50px; width: 50px; text-indent: 0px;">
-                                                    </div>
-                                                    <p>Please contact the <a href="#">admin</a> to get the OTP2 to authorize this transaction</p>
-                                                    <div class="mt-3 text-center d-flex justify-content-between">
-                                                        <a class="nav-link" href="#authModalSect1">
-                                                            <button class="btn add-btn add-btn1" type="button">Back</button>
-                                                        </a>
-                                                        <a class="nav-link" href="#authModalSect3">
-                                                            <button class="btn add-btn" type="button">Next</button>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                                <div class="col-12 flex-column authSections gap-3"  id="authModalSect3">
-                                                    <h5>Please enter your OTP3 to verify this transaction</h5>
-                                                    <div class="d-flex gencol gap-2 justify-content-center" id="pinInputs">
-                                                        <input type="password" id="authPin3-1" name="pin" maxlength="1" class="form-control text-center mb-3" style="height: 50px; width: 50px; text-indent: 0px;">
-                                                        <input type="password" id="authPin3-2" name="pin" maxlength="1" class="form-control text-center mb-3" style="height: 50px; width: 50px; text-indent: 0px;">
-                                                        <input type="password" id="authPin3-3" name="pin" maxlength="1" class="form-control text-center mb-3" style="height: 50px; width: 50px; text-indent: 0px;">
-                                                        <input type="password" id="authPin3-4" name="pin" maxlength="1" class="form-control text-center mb-3" style="height: 50px; width: 50px; text-indent: 0px;">
-                                                    </div>
-                                                    <p>Please contact the <a href="#">admin</a> to get the OTP3 to authorize this transaction</p>
-                                                    <div class="mt-3 text-center d-flex justify-content-between">
-                                                        <a class="nav-link" href="#authModalSect2">
-                                                            <button class="btn add-btn add-btn1" type="button">Back</button>
-                                                        </a>
-                                                        <button class="btn add-btn" type="button" id="authCheckBtn">Finish</button>
-                                                    </div>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                        </div> -->
-
                     </section>
 
                     <nav class="col-12 bottombar d-lg-none">
@@ -253,7 +143,7 @@
                                 <i class="fa-2x fa fa-home"></i>
                                 <small>Home</small>
                             </a>
-                            <a href="withdraw.html" class="nav-link active2">
+                            <a href="transfer.html" class="nav-link active2">
                                 <i class="fa-2x fa fa-arrow-right-arrow-left"></i>
                                 <small>Transfer</small>
                             </a>
@@ -325,7 +215,83 @@
     <script src="../resources/bootstrap/bootstrap.js"></script>
     <script src="../resources/bootstrap/bootstrap.js"></script>
 
-    <script src="../script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Get all the necessary elements
+            const form1 = document.getElementById('setForm1');
+            const form2 = document.getElementById('setForm2');
+            const form3 = document.getElementById('setForm3');
+            const form4 = document.getElementById('setForm4');
+            
+            const next1 = form1.querySelector('button[type="button"]');
+            const next2 = form2.querySelector('button[type="button"]:not(.btn.add-btn:first-of-type)');
+            const next3 = form3.querySelector('button[type="button"]:not(.btn.add-btn:first-of-type)');
+            const back2 = form2.querySelector('button.btn.add-btn:first-of-type');
+            const back3 = form3.querySelector('button.btn.add-btn:first-of-type');
+
+            // Function to handle navigation between forms
+            function showForm(currentForm, nextForm) {
+                currentForm.classList.add('disabled2');
+                nextForm.classList.remove('disabled', 'disabled2');
+            }
+
+            function showPreviousForm(currentForm, previousForm) {
+                currentForm.classList.add('disabled2');
+                previousForm.classList.remove('disabled', 'disabled2');
+            }
+
+            // Function to validate if all inputs in a form step are filled
+            function validateForm(form) {
+                const inputs = form.querySelectorAll('input, select');
+                let allValid = true;
+                
+                inputs.forEach(input => {
+                    if (!input.value.trim()) {
+                        allValid = false;
+                        input.classList.add('error', 'shakeAnim');
+                    } else {
+                        input.classList.remove('error');
+                    }
+                });
+                
+                return allValid;
+            }
+
+            // Next button on step 1 with validation
+            next1.addEventListener('click', function () {
+                if (validateForm(form1)) {
+                    showForm(form1, form2);
+                }
+            });
+
+            // Next button on step 2 with validation
+            next2.addEventListener('click', function () {
+                if (validateForm(form2)) {
+                    showForm(form2, form3);
+                }
+            });
+
+            // Next button on step 3 with validation
+            next3.addEventListener('click', function () {
+                if (validateForm(form3)) {
+                    showForm(form3, form4);
+                }
+            });
+
+            // Back button on step 2
+            back2.addEventListener('click', function () {
+                showPreviousForm(form2, form1);
+            });
+
+            // Back button on step 3
+            back3.addEventListener('click', function () {
+                showPreviousForm(form3, form2);
+            });
+        });
+
+    </script>
+
+    <!-- <script src="../script.js"></script> -->
 
     <!-- TO ADD BANKS TO SELECT DROPDOWN -->
     <script>
@@ -397,78 +363,60 @@
     </script>
 
     <!-- NAVIGATING AND COLLATING DATA FROM THE FORM -->
-    <!-- <script>
+    <script>
         
         document.addEventListener('DOMContentLoaded', function () {
             const forms = document.querySelectorAll('.update');
-            const navLinks = document.querySelectorAll('.ddddd .nav-link');
+            const nxtBtns = document.querySelectorAll('.nxtBtns');
 
-            let quoteData = {}; // Object to store the gathered data
+            const quoteData = {}; // Object to store the gathered data
             
 
             forms.forEach((form, index) => {
-                form.addEventListener('submit', (event) => {
-                    event.preventDefault(); // Prevent form submission from refreshing the page
+                nxtBtns.forEach(nxtBtn => {
+                    nxtBtn.addEventListener('click', (event) => {
+                        event.preventDefault(); // Prevent form submission from refreshing the page
 
-                    // Capture data based on the form being submitted
-                    if (index === 0) {
-                        // Capture data from the "Quote" form
-                        quoteData.amount = document.getElementById('sendAmount').value;
-                        console.log(quoteData.amount);
+                        console.log("clicked");
                         
-                    } else if (index === 1) {
-                        // Capture data from the "Recipient Details" form
-                        quoteData.accountNumber = document.getElementById('receiverId').value;
-                        console.log(quoteData.accountNumber, quoteData.bank, quoteData.amount, quoteData.name);
-                        quoteData.bank = document.getElementById('receiverBank').value;
-                        quoteData.name = "Sodiq Apai Tantoloun";
                         
-                        document.getElementById('confirmAccountNumber').innerHTML = formatAccountNumber(quoteData.accountNumber);
-                        document.getElementById('confirmBank').innerHTML = quoteData.bank;
-                        document.getElementById('confirmName').innerHTML = quoteData.name;
-                        document.getElementById('confirmAmount').innerHTML = `$${quoteData.amount}`;
+                        // Capture data based on the form being submitted
+                        if (index === 0) {
+                            quoteData.amount = document.getElementById('sendAmount').value;
+                            
+                        } else if (index === 1) {
+                            quoteData.accountNumber = document.getElementById('receiverId').value;
+                            quoteData.bank = document.getElementById('receiverBank').value;
+                            quoteData.name = "Sodiq Apai Tantoloun";
 
-                        const loaderContainer = document.querySelector('.loader-container');
-                        loaderContainer.style.display = "flex";
-                        setTimeout(() => {
-                            loaderContainer.style.display = "none";
-                        }, 2000)
-                    }
+                            document.getElementById('confirmAccountNumber').innerHTML = formatAccountNumber(quoteData.accountNumber);
+                            document.getElementById('confirmBank').innerHTML = quoteData.bank;
+                            document.getElementById('confirmName').innerHTML = quoteData.name;
+                            document.getElementById('confirmAmount').innerHTML = `$${quoteData.amount}`;
 
-                    function formatAccountNumber(number) {
-                        number = number.replace(/\D/g, ''); // Remove any non-digit characters
+                        }
 
-                        // Format the number as XXX XXX XXXX
-                        return number.replace(/(\d{3})(\d{3})(\d{4})/, '$1 $2 $3');
-                    }
+                        function formatAccountNumber(number) {
+                            number = number.replace(/\D/g, ''); // Remove any non-digit characters
 
+                            // Format the number as XXX XXX XXXX
+                            return number.replace(/(\d{3})(\d{3})(\d{4})/, '$1 $2 $3');
+                        }
 
-                    // Directly show the checkmark when the form is submitted
-                    const checkmark = navLinks[index].querySelector('.fa-check-circle');
-                    checkmark.classList.remove('d-none'); // Show the checkmark
-
-                    // Optionally, move to the next form or section
-                    const nextLink = navLinks[index + 1];
-                    if (nextLink) {
-                        nextLink.click(); // Simulate a click to navigate to the next form
-                    }
+                    })
                 });
             });
         });
 
-    </script> -->
+    </script>
 
     <!-- HANDLING PIN -->
     <script>
        
         document.addEventListener('DOMContentLoaded', function () {
             const pinInputs = document.querySelectorAll('#pinInputs input[type="password"]');
-            const startAuthBtn = document.getElementById("startAuthBtn");
-            const authCheckBtn = document.getElementById("authCheckBtn");
             const loaderContainer = document.querySelector(".loader-container");
-            const toastLiveExample = document.getElementById('liveToast');
-            const toastLiveExample2 = document.getElementById('liveToast2');
-
+            
             // AUTOMATICALLY MOVE TO THE NEXT INPUT WHEN THE CURRENT INPUT IS FILLED
             pinInputs.forEach((input, index) => {
                 input.addEventListener('input', function () {
@@ -485,65 +433,65 @@
             });
 
             const originalPin = "0000"; // Replace with the actual PIN
-            startAuthBtn.addEventListener("click", () => {
+            const collated = Array.from(pinInputs).map(input => input.value).join('');
+            // startAuthBtn.addEventListener("click", () => {
 
-                loaderContainer.style.display = "flex";
+            //     loaderContainer.style.display = "flex";
                 
-                // Collate the data from all four PIN inputs
-                // const pinPart1 = document.getElementById("pinPart1").value;
-                // const pinPart2 = document.getElementById("pinPart2").value;
-                // const pinPart3 = document.getElementById("pinPart3").value;
-                // const pinPart4 = document.getElementById("pinPart4").value;
-                // let collated = pinPart1 + pinPart2 + pinPart3 + pinPart4;
-                const collated = Array.from(pinInputs).map(input => input.value).join('');
+            //     // Collate the data from all four PIN inputs
+            //     // const pinPart1 = document.getElementById("pinPart1").value;
+            //     // const pinPart2 = document.getElementById("pinPart2").value;
+            //     // const pinPart3 = document.getElementById("pinPart3").value;
+            //     // const pinPart4 = document.getElementById("pinPart4").value;
+            //     // let collated = pinPart1 + pinPart2 + pinPart3 + pinPart4;
                 
-                // CHECK THE ORIGINAL PIN WITH FILLED PIN WHEN THE BUTTON IS CLICKED
-                if (originalPin === collated) { // IF PIN MATCHES
-                    // DISPLAY THE AUTHENTICATION MODAL
-                    setTimeout(() => {
-                        loaderContainer.style.display = "none";
-                        document.getElementById("btnnnnn").click()
-                    }, 5000);
-                } else { // If PIN does not match
-                    setTimeout(() => {
-                        loaderContainer.style.display = "none";
-                        const toastBootstrap2 = bootstrap.Toast.getOrCreateInstance(toastLiveExample2);
-                        toastBootstrap2.show();
-                        document.querySelector(".toast-container2").style.display = "flex"; // Show the error toast
-                        setTimeout(() => {
-                            document.querySelector(".toast-container2").style.display = "none";
-                        }, 5000);
-                    }, 3000);
-                }
+            //     // CHECK THE ORIGINAL PIN WITH FILLED PIN WHEN THE BUTTON IS CLICKED
+            //     if (originalPin === collated) { // IF PIN MATCHES
+            //         // DISPLAY THE AUTHENTICATION MODAL
+            //         setTimeout(() => {
+            //             loaderContainer.style.display = "none";
+            //             document.getElementById("btnnnnn").click()
+            //         }, 5000);
+            //     } else { // If PIN does not match
+            //         setTimeout(() => {
+            //             loaderContainer.style.display = "none";
+            //             const toastBootstrap2 = bootstrap.Toast.getOrCreateInstance(toastLiveExample2);
+            //             toastBootstrap2.show();
+            //             document.querySelector(".toast-container2").style.display = "flex"; // Show the error toast
+            //             setTimeout(() => {
+            //                 document.querySelector(".toast-container2").style.display = "none";
+            //             }, 5000);
+            //         }, 3000);
+            //     }
                 
-                const isCorrectAuth = true; // ADD LOGIC OF AUTHENTICATING HERE
-                authCheckBtn.addEventListener("click", () => {
-                    loaderContainer.style.display = "flex";
-                    if (isCorrectAuth) {
-                        const transactionId = generateTransactionId();
-                        document.getElementById("transactId").innerHTML = `Transaction ID: ${transactionId}`;
-                        setTimeout(() => {
-                            document.getElementById("closeModal").click();
-                            const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample);
-                            toastBootstrap.show();
-                            document.querySelector(".toast-container").style.display = "flex"; // Show the success toast
-                            setTimeout(() => {
-                                document.querySelector(".toast-container").style.display = "none";
-                                window.location.href = "dashboard.html";
-                            }, 5000);
-                        }, 3000);
-                    } else {
-                        loaderContainer.style.display = "none";
-                        const toastBootstrap2 = bootstrap.Toast.getOrCreateInstance(toastLiveExample2);
-                        toastBootstrap2.show();
-                        document.querySelector(".toast-container2").style.display = "flex"; // Show the error toast
-                        document.querySelector(".toast-container2 #errorInfo").innerText = "Failed to Autheticate Transaction!"; // Show the error toast
-                        setTimeout(() => {
-                            document.querySelector(".toast-container2").style.display = "none";
-                        }, 5000);
-                    }
-                })
-            });
+            //     const isCorrectAuth = true; // ADD LOGIC OF AUTHENTICATING HERE
+            //     authCheckBtn.addEventListener("click", () => {
+            //         loaderContainer.style.display = "flex";
+            //         if (isCorrectAuth) {
+            //             const transactionId = generateTransactionId();
+            //             document.getElementById("transactId").innerHTML = `Transaction ID: ${transactionId}`;
+            //             setTimeout(() => {
+            //                 document.getElementById("closeModal").click();
+            //                 const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample);
+            //                 toastBootstrap.show();
+            //                 document.querySelector(".toast-container").style.display = "flex"; // Show the success toast
+            //                 setTimeout(() => {
+            //                     document.querySelector(".toast-container").style.display = "none";
+            //                     window.location.href = "dashboard.html";
+            //                 }, 5000);
+            //             }, 3000);
+            //         } else {
+            //             loaderContainer.style.display = "none";
+            //             const toastBootstrap2 = bootstrap.Toast.getOrCreateInstance(toastLiveExample2);
+            //             toastBootstrap2.show();
+            //             document.querySelector(".toast-container2").style.display = "flex"; // Show the error toast
+            //             document.querySelector(".toast-container2 #errorInfo").innerText = "Failed to Autheticate Transaction!"; // Show the error toast
+            //             setTimeout(() => {
+            //                 document.querySelector(".toast-container2").style.display = "none";
+            //             }, 5000);
+            //         }
+            //     })
+            // });
             
             function generateTransactionId() {
                 const timestamp = Date.now().toString(36).toUpperCase(); // Base36 encoding of the current time

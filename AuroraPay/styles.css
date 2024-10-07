@@ -84,7 +84,7 @@ header{
     color: var(--secClr);
     box-shadow: 0px 1px 2px var(--tetClr);
 }
-.withdraw .add-btn,
+.transfer .add-btn, .transfer .add-btn:hover,
 .parent-card .add-btn, .parent-card .add-btn:hover,
 .home-card .add-btn, .home-card .add-btn:hover{
     width: max-content;
@@ -227,113 +227,9 @@ main{
                 font-weight: 700;
             }
         }
-        .profile-options{
-            background: #ffffffee !important;
-            border-radius: 10px;
-            height: 100vh;
-            padding: 1rem;
-            .gencol{
-                background: var(--secClr);
-                box-shadow: 3px 3px 5px #0000002a;
-                display: grid;
-                border-radius: 5px;
-                color: #000000;
-                label{
-                    color: #292929;
-                    font-weight: bold;
-                    text-decoration: none;
-                    font-size: 12px;
-                    opacity: 70%;
-                }
-                select,
-                .form-control{
-                    font-size: 12px;
-                    background: transparent;
-                    border-radius: 0px !important;
-                    padding: 0;
-                    letter-spacing: 1px;
-                    border: 0;
-                    box-shadow: none;
-                    outline: none;
-                }
-                .form-control:disabled{
-                    opacity: 50%;
-                }
-            }
-            .add-btn{
-                height: 50px;
-                width: 35%;
-                margin: 0 auto;
-                border: none;
-                border-radius: 10px;
-                font-weight: bold;
-                scale: 0.8;
-                box-shadow: 5px 5px 10px #00000028;
-                background: linear-gradient(325deg, #f7f7f7 40%, #785bf3 41%);
-            }
-            .add-btn:hover{
-                scale: 0.85;
-                color: initial;
-                transition: scale .5s;
-            }
-        }
         #setForm2, #setForm1, #setForm3, #setForm4{
             padding: 0;
             position: relative;
-        }
-        #setForm1::after,
-        #setForm2::after,
-        #setForm2::before,
-        #setForm3::after,
-        #setForm4::after{
-            content: "";
-            width: 15px;
-            height: 15px;
-            border-radius: 50%;
-            background: var(--pryClr);
-            border: 2px solid var(--tetClr);
-            position: absolute;
-            z-index: 2;
-        }
-        #setForm1::before,
-        #setForm3::before,
-        #setForm4::before{
-            content: "";
-            width: 100px;
-            height: 5px;
-            background: var(--pryClr);
-            background: var(--pryClr);
-            position: absolute;
-            z-index: 2;
-            top: calc(5% + (15px / 3));
-            right: calc(0% - 4rem);
-        }
-        #setForm3::before{
-            rotate: -40deg;
-            top: -6%;
-            width: 125px;
-            right: calc(0% - 5rem);
-        }
-        #setForm4::before{
-            left: calc(0% - 4rem);
-        }
-        #setForm3::after{
-            top: 5%;
-            right: 5%;
-        }
-        #setForm2::after,
-        #setForm4::after{
-            top: 5%;
-            left: 5%;
-        }
-        #setForm2::before{
-            bottom: 5%;
-            left: 5%;
-        }
-        #setForm1::after,
-        #setForm2::after{
-            bottom: 5%;
-            right: 5%;
         }
         .update{
             height: 100%;
@@ -363,12 +259,10 @@ main{
             display: flex;
             justify-content: center;
             align-items: center;
-
-
             color: var(--pryClr);
             font-weight: 900;
             font-size: 15rem;
-            opacity: 40%;
+            opacity: 20%;
             -webkit-text-stroke: 5px black;
 
         }
@@ -396,19 +290,129 @@ main{
         .update .btn:hover{
             width: 25%;
             height: 50px;
-            background: var(--pryClr);
-            border: 1px solid black;
-            border-radius: 10px !important;
+            /* border-radius: 10px !important; */
             transform: translateX(0);
             box-shadow: 3px -3px 10px #4424461c;
         }
-        .withdraw{
+        .transfer{
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 2rem;
             width: 100%;
             transform: translateX(12px);
         }
+        .disabled{
+            pointer-events: none;
+            opacity: 70%;
+        }
+        .disabled .step-count{
+            z-index: 3;
+            opacity: 100%;
+            background: var(--secClr) !important;
+        }
+        .disabled2 .step-count{
+            opacity: 70%;
+        }
+        .disabled2{
+            opacity: 30%;
+            pointer-events: none;
+        }
+        .error {
+            border: 2px solid red !important;
+        }
+    .deposit-card{
+        background: #200020;
+        border-radius: 10px;
+        .form-control{
+            border-radius: 0.375rem;
+        }
+        form{
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        .form-control{
+            border-color: #000000;
+            border-radius: 0px;
+        }
+        select{
+            border: none;
+        }
+        input[type="number"]{
+            appearance: none !important;
+        }
+        input,
+        input:focus{
+            border: none;
+            outline: none;
+            box-shadow: none;
+        }
+        .btn{
+            background: yellow;
+            border-radius: 10px;
+            padding: .5rem;
+            border: 2px solid #545454;
+            color: wheat;
+            height: 50px;
+        }
+        .form-control{
+            width: 40%;
+            padding: 0;
+            input{
+                padding: 1rem;
+                width: 90%;
+                border-right: 1px solid yellow;
+            }
+            .btn{
+                width: 15%;
+                background: #545454;
+                border: none;
+                border-radius: 0px;
+                font-size: 25px;
+                color: white;
+                padding: 1rem 0;
+            }
+        }
+        input[type="radio"]{
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            background: yellow;
+            border-radius: 50%;
+            position: relative;
+        }
+        input[type="radio"]:checked::after{
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: yellow;
+            border: 2px solid white;
+        }
+        .card-img{
+            width: 40%;
+            background-color: white;
+            img{
+                width: 70%;
+                margin: 0 auto;
+            }
+        }
+        .btn{
+            padding: 0 1rem;
+            background: yellow;
+            border: none;
+            border-radius: 10px;
+            border: 2px solid #200020;
+            height: 50px;
+            margin: 0 auto;
+            color: white;
+        }
+    }
+
     }
         /* .admin{
             .table-responsive{
@@ -1053,3 +1057,19 @@ main{
         scale: 0.8;
     }
 }
+.shakeAnim{
+    animation: shake .5s 1;
+}
+@keyframes shake {
+    0% { transform: translateX(0); }
+    10% { transform: translateX(-5px); }
+    20% { transform: translateX(5px); }
+    30% { transform: translateX(0); }
+    40% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    60% { transform: translateX(0); }
+    70% { transform: translateX(-5px); }
+    80% { transform: translateX(5px); }
+    90% { transform: translateX(0); }
+    100% { transform: translateX(0); }
+  }
