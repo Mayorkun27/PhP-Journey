@@ -20,6 +20,19 @@
         opacity: 0%;
     }
 }
+@keyframes shake {
+    0% { transform: translateX(0); }
+    10% { transform: translateX(-5px); }
+    20% { transform: translateX(5px); }
+    30% { transform: translateX(0); }
+    40% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    60% { transform: translateX(0); }
+    70% { transform: translateX(-5px); }
+    80% { transform: translateX(5px); }
+    90% { transform: translateX(0); }
+    100% { transform: translateX(0); }
+}
 
 
 
@@ -29,134 +42,10 @@
         .content{
             height: max-content !important;
             width: 100% !important;
-            .transaction-table{
-                background: #ffffffee;
-                border-radius: 10px;
-                .table-top, td{
-                    padding: 1rem .9rem !important;
-                }
-                .table{
-                    width: 100% !important;
-                }
-                .table-top{
-                    font-weight: 700;
-                    width: 100% !important;
-                    box-shadow: 3px 3px 10px #00000028 !important;
-                    border-radius: 10px;
-                }
-                tbody{
-                    margin-top: 1rem;
-                    display: grid;
-                    gap: 1rem 1rem;
-                    justify-content: space-between;
-                    grid-template-columns: repeat(2, 1fr);
-                }
-                tr{
-                    cursor: pointer;
-                    display: flex;
-                    align-items: center;
-                    justify-content: space-between;
-                    box-shadow: 2px 2px 5px #00000014;
-                    transition: border-radius .5s;
-                    .fa{
-                        background: #775bf3db;
-                        height: 40px;
-                        width: 40px;
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        border-radius: 50%;
-                        font-size: 20px;
-                        color: #f7f7f7;
-                    }
-                }
-                td:hover{
-                    transition: all 1s !important;
-                }
-                tr:hover,
-                tr:hover td{
-                    border-radius: 10px !important;
-                    background: var(--bs-table-hover-bg) !important;
-                }
-                table, tr, td, tbody, thead, th{
-                    border: none;
-                }
-                .table{
-                    --bs-body-bg: #ffffff00;
-                    --bs-table-hover-bg: #f7f7f790;
-                }
-                .amount,
-                #transactType{
-                    font-weight: 700;
-                }
-            }
-            .profile-options{
-                background: #ffffffee !important;
-                border-radius: 10px;
-                height: 100vh;
-                padding: 1rem;
-                .gencol{
-                    background: var(--secClr);
-                    box-shadow: 3px 3px 5px #0000002a;
-                    display: grid;
-                    border-radius: 5px;
-                    color: #000000;
-                    label{
-                        color: #292929;
-                        font-weight: bold;
-                        text-decoration: none;
-                        font-size: 12px;
-                        opacity: 70%;
-                    }
-                    select,
-                    .form-control{
-                        font-size: 12px;
-                        background: transparent;
-                        border-radius: 0px !important;
-                        padding: 0;
-                        letter-spacing: 1px;
-                        border: 0;
-                        box-shadow: none;
-                        outline: none;
-                    }
-                    .form-control:disabled{
-                        opacity: 50%;
-                    }
-                }
-                .add-btn{
-                    height: 50px;
-                    width: 35%;
-                    margin: 0 auto;
-                    border: none;
-                    border-radius: 10px;
-                    font-weight: bold;
-                    scale: 0.8;
-                    box-shadow: 5px 5px 10px #00000028;
-                    background: linear-gradient(325deg, #f7f7f7 40%, #785bf3 41%);
-                }
-                .add-btn:hover{
-                    scale: 0.85;
-                    color: initial;
-                    transition: scale .5s;
-                }
-            }
             .update .btn,
             .update .btn:hover{
                 width: 50% !important;
             }
-            /* .withdraw .col-6:first-child{
-                border-right: 2px solid var(--tetClr);
-            }
-            .withdraw .col-6:last-child{
-                border-top: 2px solid var(--tetClr);
-            }
-            .withdraw .col-6:nth-child(3){
-                border-top: 2px solid var(--tetClr);
-                border-right: 2px solid var(--tetClr);
-            } */
-        }    
-        .content::-webkit-scrollbar{
-            display: none;
         }
     }
 }
@@ -168,6 +57,14 @@
         width: 100%;
         transform: translateX(12px);
     }
+    .deposit > div:nth-child(1),
+    .deposit > div:nth-child(2){
+        width: 100% !important;
+    }
+    tbody{
+        grid-template-columns: repeat(1, 1fr) !important;
+    }
+    
 }
 @media (min-width: 768px) and (max-width: 991px) {
     .parent-card .btn{
@@ -176,4 +73,5 @@
     }
 }
 @media (min-width: 200px) and (max-width: 475px) {
+    
 }
