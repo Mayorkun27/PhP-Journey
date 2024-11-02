@@ -21,7 +21,7 @@
 
         <div class="container-fluid px-3">
 
-            <div class="row align-items-center justify-content-between position-relative" style="height: 100vh;">
+            <div class="row align-items-center justify-content-between overflow-hidden position-relative" style="height: 100vh;">
 
                 <nav class="col-lg-2 d-lg-flex flex-column justify-content-between d-none sidebar">
                     <div class="mt-2 d-flex gap-5 flex-column w-100 justify-content-between">
@@ -31,7 +31,7 @@
                             <li class="p-3 py-2"><a class="nav-link p-0" href="transfer.html"><i class="fa fa-arrow-right-arrow-left"></i><span>Transfer</span></a></li>
                             <li class="p-3 py-2"><a class="nav-link p-0" href="deposit.html"><i class="fa fa-money-bill"></i><span>Deposit</span></a></li>
                             <li class="p-3 py-2 active"><a class="nav-link p-0" href="#"><i class="fa fa-file-invoice"></i><span>Transactions</span></a></li>
-                            <li class="p-3 py-2"><a class="nav-link p-0" href="#"><i class="fa fa-user"></i><span>Profile</span></a></li>
+                            <li class="p-3 py-2"><a class="nav-link p-0" href="profile.html"><i class="fa fa-user"></i><span>Profile</span></a></li>
                         </ul>
                     </div>
                     <a href="#" class="ms-3 logout nav-link pb-3"><i class="ti ti-logout"></i><span>Logout</span></a>
@@ -53,13 +53,44 @@
 
                         <div class="row">
 
-                            <div class="col-12 pe-4">
-
-                                <div class="table-top mb-3 d-flex align-items-center ms-auto">
-                                    <small class="redirect text-center">Money In: <span id="totalIn"></span></small>
-                                    <small class="redirect redirect2 text-center">Money Out: <span id="totalOut"></span></small>
+                            <div class="col-12">
+                                <div class="table-top position-relative mb-4 p-lg-3 p-md-3 p-2 d-flex flex-lg-row flex-md-row align-items-lg-end gap-3 justify-content-between w-100">
+                                    <h4 class="m-0 p-0 d-lg-none d-flex align-items-center gap-2" id="openFilter"><span>Filter</span><i class="fa fa-chevron-up"></i></h4>
+                                    <div class="filters d-lg-flex hidden gap-3 flex-lg-row flex-column align-items-lg-end">
+                                        <div class="d-flex flex-column">
+                                            <label for="filterMonth">Month:</label>
+                                            <select id="filterMonth" class="px-2">
+                                                <option value="">All</option>
+                                                <option value="1">January</option>
+                                                <option value="2">February</option>
+                                                <option value="3">March</option>
+                                                <option value="4">April</option>
+                                                <option value="5">May</option>
+                                                <option value="6">June</option>
+                                                <option value="7">July</option>
+                                                <option value="8">August</option>
+                                                <option value="9">September</option>
+                                                <option value="10">October</option>
+                                                <option value="11">November</option>
+                                                <option value="12">December</option>
+                                            </select>
+                                        </div>
+                                        <div class="d-flex flex-column">
+                                            <label for="filterYear">Year:</label>
+                                            <input type="number" id="filterYear" class="form-control" placeholder="Enter Year" />
+                                        </div>
+                                        <div class="d-flex flex-column">
+                                            <label for="filterTime">Time:</label>
+                                            <input type="time" id="filterTime" class="form-control" />
+                                        </div>
+                                        <button id="applyFilters" class="btn px-3 py-2 add-btn">Apply Filters</button>
+                                    </div>
+                                    <div class="summary d-flex align-items-center ms-auto">
+                                        <small class="redirect text-center">Money In: <span id="totalIn"></span></small>
+                                        <small class="redirect redirect2 text-center">Money Out: <span id="totalOut"></span></small>
+                                    </div>
                                 </div>
-                                <div class="table-responsive transaction-table mb-5 p-3">
+                                <div class="table-responsive transaction-table mb-5 p-lg-3 p-md-3 p-2">
                                     <table class="table table-hover">
                                         <tbody>
                                             <tr>
@@ -202,6 +233,23 @@
         document.querySelector("#totalOut").innerText =  "$" + totalOut;
         
 
+    </script>
+
+    <script>
+        const openFilter = document.getElementById("openFilter")
+        let filters = document.querySelector(".filters")
+        let icon = document.querySelector(".fa-chevron-up")
+
+        openFilter.addEventListener("click", () => {
+            filters.classList.toggle("hidden")
+            if (icon.classList.contains("fa-chevron-up")) {
+                icon.classList.remove("fa-chevron-up")
+                icon.classList.add("fa-chevron-down")
+            } else {
+                icon.classList.add("fa-chevron-up")
+                icon.classList.remove("fa-chevron-down")
+            }
+        })
     </script>
 
 </body>

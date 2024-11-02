@@ -31,7 +31,7 @@
                             <li class="p-3 py-2"><a class="nav-link p-0" href="transfer.html"><i class="fa fa-arrow-right-arrow-left"></i><span>Transfer</span></a></li>
                             <li class="p-3 py-2 active"><a class="nav-link p-0" href="#"><i class="fa fa-money-bill"></i><span>Deposit</span></a></li>
                             <li class="p-3 py-2"><a class="nav-link p-0" href="transactions.html"><i class="fa fa-file-invoice"></i><span>Transactions</span></a></li>
-                            <li class="p-3 py-2"><a class="nav-link p-0" href="#"><i class="fa fa-user"></i><span>Profile</span></a></li>
+                            <li class="p-3 py-2"><a class="nav-link p-0" href="profile.html"><i class="fa fa-user"></i><span>Profile</span></a></li>
                         </ul>
                     </div>
                     <a href="#" class="ms-3 logout nav-link pb-3"><i class="ti ti-logout"></i><span>Logout</span></a>
@@ -81,16 +81,15 @@
                                     </div>
                                 </div>
                             </div>
-                            <div id="setForm3">
+                            <div id="setForm3" class="disabled">
                                 <div class="update last-update">
                                     <h1 class="step-count">3</h1>
-                                    <div class="form-control d-flex justify-content-between d-none" id="walletOption">
+                                    <div class="thiss d-flex justify-content-between d-none" id="walletOption">
                                         <input type="text" disabled value="708 169 6490" id="walletAdd" class="border-0 p-0">
-                                        <button class="btn fa fa-copy h-100" id="copyBtn" type="button"></button>
+                                        <button class="btn fa fa-copy" id="copyBtn" type="button"></button>
                                     </div>
-                                    <div class="card-img p-3 text-center d-none" id="qrCodeOption">
+                                    <div class="card-img p-3 bg-light text-center d-none" id="qrCodeOption">
                                         <div id="qrcode">
-                                            <img src="../images/img2.png" alt="" class="img-fluid">
                                         </div>
                                     </div>
                                     <button class="btn add-btn">Payment Made</button>
@@ -141,6 +140,7 @@
             // Get all the necessary elements
             const form1 = document.getElementById('setForm1');
             const form2 = document.getElementById('setForm2');
+            const form3 = document.getElementById('setForm3');
             
             const next1 = form1.querySelector('button');
             const prevBtn = document.querySelector('.prevBtn');
@@ -185,27 +185,26 @@
                 showPreviousForm(form2, form1);
                 prevBtn.style.display = "none"
             });
-        });
 
-    </script>
+            let walletOption = document.getElementById("walletOption");
+            let qrCodeOption = document.getElementById("qrCodeOption");
+            
+            document.getElementById("walletAddress").addEventListener("change", () => {
+                walletOption.classList.remove("d-none")
+                qrCodeOption.classList.add("d-none")
+                showForm(form3, form3);
+                showForm(form3, form3);
+            });
+            
+            document.getElementById("qrCode").addEventListener("change", () => {
+                walletOption.classList.add("d-none")
+                qrCodeOption.classList.remove("d-none")
+                generateQRCode();
+            });
 
-    <script>
-        let walletOption = document.getElementById("walletOption");
-        let qrCodeOption = document.getElementById("qrCodeOption");
-        
-        document.getElementById("walletAddress").addEventListener("change", () => {
-            walletOption.classList.remove("d-none")
-            qrCodeOption.classList.add("d-none")
-        });
-        
-        document.getElementById("qrCode").addEventListener("change", () => {
-            walletOption.classList.add("d-none")
-            qrCodeOption.classList.remove("d-none")
-            generateQRCode();
-        });
-
-        document.getElementById("copyBtn").addEventListener("click", () => {
-            navigator.clipboard.writeText(document.getElementById("walletAdd").value);
+            document.getElementById("copyBtn").addEventListener("click", () => {
+                navigator.clipboard.writeText(document.getElementById("walletAdd").value);
+            });
         });
     </script>
 

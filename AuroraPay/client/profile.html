@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aurora Pay</title>
+
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../responsiveness.css">
+
+    <link rel="stylesheet" href="../resources/bootstrap/bootstrap.css">
+    <link rel="stylesheet" href="../resources/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="../resources/fontawesome-free-6.4.2-web/css/all.css">
+    <link rel="stylesheet" href="../resources/tabler-icons/webfont/tabler-icons.min.css">
+
+</head>
+<body>
+    
+
+    <div class="overflow-x-hidden">
+
+        <div class="container-fluid px-3">
+
+            <div class="row align-items-center justify-content-between overflow-hidden position-relative" style="height: 100vh;">
+
+                <nav class="col-lg-2 d-lg-flex flex-column justify-content-between d-none sidebar">
+                    <div class="mt-2 d-flex gap-5 flex-column w-100 justify-content-between">
+                        <a href="" class="navbar-brand text-center">AuroraPay</a>
+                        <ul class="navbar-nav gap-3 w-100">
+                            <li class="p-3 py-2"><a class="nav-link p-0" href="dashboard.html"><i class="fa fa-home"></i><span>Home</span></a></li>
+                            <li class="p-3 py-2"><a class="nav-link p-0" href="transfer.html"><i class="fa fa-arrow-right-arrow-left"></i><span>Transfer</span></a></li>
+                            <li class="p-3 py-2"><a class="nav-link p-0" href="deposit.html"><i class="fa fa-money-bill"></i><span>Deposit</span></a></li>
+                            <li class="p-3 py-2"><a class="nav-link p-0" href="transactions.html"><i class="fa fa-file-invoice"></i><span>Transactions</span></a></li>
+                            <li class="p-3 py-2 active"><a class="nav-link p-0" href="#"><i class="fa fa-user"></i><span>Profile</span></a></li>
+                        </ul>
+                    </div>
+                    <a href="#" class="ms-3 logout nav-link pb-3"><i class="ti ti-logout"></i><span>Logout</span></a>
+                </nav>
+
+                <main class="col-lg-10 pt-3">
+
+                    <header class="py-3 px-3 mb-3 d-flex align-items-center justify-content-between">
+                        <h3 class="m-0 p-0">Good Day</h3>
+                        <a href="#" class="nav-link">
+                            <div class="profile d-flex align-items-center gap-2" style="width: max-content;">
+                                <h6 class="m-0 p-0 text-end" id="userName" style="width: 120px; white-space: nowrap; overflow: scroll;">Oluwamayokun</h6>
+                                <img src="../images/img1.png" alt="..." class="img-fluid bg-light" width="40px" height="40px" style="border-radius: 50%; clip-path: circle(); object-fit: cover;">
+                            </div>
+                        </a>
+                    </header>
+
+                    <section class="content pb-lg-0 pb-5">
+
+                        <div class="row">
+
+                            
+
+                        </div>
+
+                    </section>
+
+                    <nav class="col-12 bottombar d-lg-none">
+                        <ul class="navbar-nav w-100 d-flex flex-row gap-2 justify-content-between py-1 px-md-5">
+                            <a href="dashboard.html" class="nav-link">
+                                <i class="fa-2x fa fa-home"></i>
+                                <small>Home</small>
+                            </a>
+                            <a href="transfer.html" class="nav-link">
+                                <i class="fa-2x fa fa-arrow-right-arrow-left"></i>
+                                <small>Transfer</small>
+                            </a>
+                            <a href="deposit.html" class="nav-link">
+                                <i class="fa-2x fa fa-plus"></i>
+                                <small>Deposit</small>
+                            </a>
+                            <a href="cards.html" class="nav-link">
+                                <i class="fa-2x fa fa-credit-card"></i>
+                                <small>Cards</small>
+                            </a>
+                            <a href="transactions.html" class="nav-link active2">
+                                <i class="fa-2x fa fa-file-invoice"></i>
+                                <small>History</small>
+                            </a>
+                        </ul>
+                    </nav>
+
+                </main>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="../resources/bootstrap/bootstrap.js"></script>
+    <script src="../resources/bootstrap/bootstrap.js"></script>
+
+    <script>
+        // TO ADJUST TRANSACTIONS EFFECT ACCORDINGLY
+        const amounts = document.querySelectorAll(".amount");
+
+        amounts.forEach(amount => {
+            amount.style.textAlign = "end";
+            if (amount.textContent.includes("-")) {
+                amount.style.color = "red";
+            }else {
+                amount.style.color = "green"
+            }
+        });
+
+        let totalIn = 0;
+        let totalOut = 0;
+
+        const rows = document.querySelectorAll("tbody tr");
+
+        // LOOP THROUGH EACH ROW TO: 
+        rows.forEach(row => {
+            // CHECK THE ROW CONTENT FOR transactType
+            const type = row.querySelector("span#transactType").textContent;
+
+            // CHECK THE ROW CONTENT FOR transactAmount
+            const amount = parseFloat(row.querySelector("span#transactAmount").textContent);
+            
+            // CHECK THE ROW CONTENT FOR amount
+            const price = row.querySelector(".amount").textContent;
+
+            // PICK EACH AND ADD UP ACCORDINGLY
+            if (price.includes("+")) {
+                totalIn += amount;
+            } else if (price.includes("-")) {
+                totalOut += amount;
+            }
+        });
+        
+        console.log("Total Money In: $", totalIn);
+        console.log("Total Money Out: $", totalOut);
+
+        document.querySelector("#totalIn").innerText = "$" + totalIn;
+        document.querySelector("#totalOut").innerText =  "$" + totalOut;
+        
+
+    </script>
+
+    <script>
+        const openFilter = document.getElementById("openFilter")
+        let filters = document.querySelector(".filters")
+        let icon = document.querySelector(".fa-chevron-up")
+
+        openFilter.addEventListener("click", () => {
+            filters.classList.toggle("hidden")
+            if (icon.classList.contains("fa-chevron-up")) {
+                icon.classList.remove("fa-chevron-up")
+                icon.classList.add("fa-chevron-down")
+            } else {
+                icon.classList.add("fa-chevron-up")
+                icon.classList.remove("fa-chevron-down")
+            }
+        })
+    </script>
+
+</body>
+</html>

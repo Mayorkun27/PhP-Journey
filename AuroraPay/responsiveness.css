@@ -46,6 +46,18 @@
             .update .btn:hover{
                 width: 50% !important;
             }
+            .filters{
+                position: absolute;
+                background: var(--compClr);
+                padding: 1rem;
+                z-index: 9;
+                top: 0;
+                left: 0;
+                transform: translateY(17%);
+                box-shadow: 3px 3px 10px #4424468b;
+                border: 1px solid var(--pryClr) !important;
+                border-radius: 10px;
+            }
         }
     }
 }
@@ -64,12 +76,47 @@
     tbody{
         grid-template-columns: repeat(1, 1fr) !important;
     }
-    
+    .content .thiss{
+        width: 90% !important;
+    }
+    .deposit .card-img{
+        width: 70% !important;
+        img{
+            width: 90% !important;
+        }
+    }
+    .prevBtn, .prevBtn:hover{
+        left: 15% !important;
+    }
+    .transaction-table{
+        tr{
+            font-size: 14px !important;
+        }
+    }
+    .table-top .redirect{
+        padding: .6rem !important;
+    }
+    .table-top, .table-top h4{
+        font-size: 14px !important;
+    }
 }
 @media (min-width: 768px) and (max-width: 991px) {
     .parent-card .btn{
         font-size: 10px;
         transform: translateX(0);
+    }
+    .content .thiss{
+        width: 70% !important;
+    }
+    .deposit .card-img{
+        width: 40% !important;
+        img{
+            width: 90% !important;
+        }
+    }
+    .filters{
+        width: 50%;
+        transform: translateY(25%) !important;
     }
 }
 @media (min-width: 200px) and (max-width: 475px) {
