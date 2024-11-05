@@ -2,9 +2,6 @@
 
 include_once "connect.php";
 
-header("Access-Control-Allow-Origin: *");
-header('Content-Type: application/json');
-
 // Check if the request method is POST
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Get the input data from the request
