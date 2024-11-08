@@ -9,6 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $category = $_POST["category"];
     $name = $_POST["name"];
     $description = $_POST["description"];
+    $quantity = $_POST["quantity"];
     $price = $_POST["price"];
 
     // Check if the 'image' key exists in $_FILES
@@ -20,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $tmp_file = $_FILES["image"];
 
     // Validate required fields
-    if (empty($id) || empty($category) || empty($name) || empty($description) || empty($price) || empty($tmp_file['name'])) {
+    if (empty($id) || empty($category) || empty($name) || empty($description) || empty($quantity) || empty($price) || empty($tmp_file['name'])) {
         echo json_encode(["status" => 400, "message" => "All fields are required"]);
         exit; // Stop further execution
     }
@@ -30,6 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $category = mysqli_real_escape_string($conn, $category);
     $name = mysqli_real_escape_string($conn, $name);
     $description = mysqli_real_escape_string($conn, $description);
+    $quantity = mysqli_real_escape_string($conn, $quantity);
     $price = mysqli_real_escape_string($conn, $price);
 
     // Get the file name and path
@@ -39,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Move the uploaded file
     if (move_uploaded_file($tmp_file["tmp_name"], $uploadPath)) {
         // Insert data into the database
-        $insert = mysqli_query($conn, "INSERT INTO `add_products`(`id`, `category`, `name`, `description`, `price`, `image`) VALUES ('$id','$category','$name','$description','$price','$perm_file')");
+        $insert = mysqli_query($conn, "INSERT INTO `add_products`(`id`, `category`, `name`, `description`, `quantity`, `price`, `image`) VALUES ('$id','$category','$name','$description', '$quantity', '$price','$perm_file')");
         
         if ($insert) {
             echo json_encode(["status" => 200, "message" => "Product Uploaded Successfully"]);

@@ -16,6 +16,7 @@
         $password = $_POST["password"];
         $confPassword = $_POST["confPassword"];
         $subscribe = $_POST["subscribe"] ?? 0; // Default to 0 if not provided
+        $role = $_POST["role"];
 
         // Check for required fields
         if (empty($fName) || empty($lName) || empty($email) || empty($password) || empty($confPassword)) {
@@ -46,9 +47,10 @@
         $phoneNumber = mysqli_real_escape_string($conn, $phoneNumber);
         $address = mysqli_real_escape_string($conn, $address);
         $subscribe = mysqli_real_escape_string($conn, $subscribe);
+        $role = mysqli_real_escape_string($conn, $role);
 
         // Insert data into the database
-        $insert = mysqli_query($conn, "INSERT INTO `petal_power_users`(`fName`, `lName`, `email`, `phoneNumber`, `address`, `password`, `subscribe`) VALUES ('$fName','$lName','$email','$phoneNumber','$address','$hashed_password','$subscribe')");
+        $insert = mysqli_query($conn, "INSERT INTO `petal_power_users`(`fName`, `lName`, `email`, `phoneNumber`, `address`, `password`, `subscribe`, `role`) VALUES ('$fName','$lName','$email','$phoneNumber','$address','$hashed_password','$subscribe', '$role')");
         
         if ($insert) {
             echo json_encode(["status" => 200, "message" => "User created successfully"]);
