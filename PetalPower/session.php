@@ -2,6 +2,7 @@
 
 include_once "connect.php";
 
+
 // Function to validate the token
 function isTokenValid($conn, $token) {
     $query_token_expiration = mysqli_query($conn, "SELECT `token_expiration` FROM `petal_power_users` WHERE `token`='$token'");

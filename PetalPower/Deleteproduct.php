@@ -1,28 +1,31 @@
 <?php
 
 include_once "connect.php";
+header('Content-Type: application/json');
 
-if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+if ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
+    // Parse the ID from query parameters or request body
+    parse_str(file_get_contents("php://input"), $input);
+    $id = isset($input["id"]) ? $input["id"] : null;
 
-    if (isset($_GET["id"])) {
-        $id = mysqli_real_escape_string($conn, $_GET["id"]);
+    if ($id) {
+        // Use prepared statements to prevent SQL injection
+        $stmt = $conn->prepare("DELETE FROM add_products WHERE id = ?");
+        $stmt->bind_param("s", $id);
 
-        $select_all_in_table = mysqli_query($conn, "DELETE FROM `add_products` WHERE `id` = '$id'");
-        $select_row_by_row = mysqli_num_rows($select_all_in_table);
-
-        if ($select_row_by_row > 0) {
-            $convert_data = mysqli_fetch_all($select_all_in_table, MYSQLI_ASSOC);
+        if ($stmt->execute() && $stmt->affected_rows > 0) {
             echo json_encode([
                 "status" => 200,
-                "message" => "Product with ID $id fetched successfully",
-                "data" => $convert_data
+                "message" => "Product with ID $id deleted successfully"
             ]);
         } else {
             echo json_encode([
                 "status" => 404,
-                "message" => "Product with ID $id not found"
+                "message" => "Product with ID $id not found or failed to delete"
             ]);
         }
+
+        $stmt->close();
     } else {
         echo json_encode([
             "status" => 400,
