@@ -5,7 +5,6 @@
     
     $conn = mysqli_connect("localhost", "root", "", "petal_power");
 
-
     if ($conn) {
         echo "connected";
         echo json_encode(["status" => 200, "message" => "Database connection successful"]);

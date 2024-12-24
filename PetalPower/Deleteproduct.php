@@ -5,8 +5,7 @@ header('Content-Type: application/json');
 
 if ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
     // Parse the ID from query parameters or request body
-    parse_str(file_get_contents("php://input"), $input);
-    $id = isset($input["id"]) ? $input["id"] : null;
+    $id = mysqli_real_escape_string($conn, $_GET["id"]);
 
     if ($id) {
         // Use prepared statements to prevent SQL injection

@@ -32,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (password_verify($password, $hashed_password)) {
             // Password is correct, generate token
             $token = generateToken();
-            $expirationTime = date("Y-m-d H:i:s", strtotime("+10 minute")); // 1-hour expiration
+            $expirationTime = date("Y-m-d H:i:s", strtotime("+30 minute")); // 1-hour expiration
 
             // Update token and expiration time in the database
             $add_token = mysqli_query($conn, "UPDATE `petal_power_users` SET `token`='$token', `token_expiration`='$expirationTime' WHERE `email`='$email'");

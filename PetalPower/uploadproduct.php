@@ -38,18 +38,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $perm_file = basename($tmp_file["name"]);
     $uploadPath = "Uploads/$perm_file";
 
-    // Move the uploaded file
-    if (move_uploaded_file($tmp_file["tmp_name"], $uploadPath)) {
-        // Insert data into the database
-        $insert = mysqli_query($conn, "INSERT INTO `add_products`(`id`, `category`, `name`, `description`, `quantity`, `price`, `image`) VALUES ('$id','$category','$name','$description', '$quantity', '$price','$perm_file')");
-        
-        if ($insert) {
-            echo json_encode(["status" => 200, "message" => "Product Uploaded Successfully"]);
-        } else {
-            echo json_encode(["status" => 500, "message" => "Failed to upload product"]);
-        }
+    $find_id_in_table = mysqli_query($conn, "SELECT * FROM `add_products` WHERE `id` = '$id'");
+
+    if (mysqli_num_rows($find_id_in_table) > 0) {
+        echo json_encode(["status" => 500, "message" => "Failed to upload product"]);
     } else {
-        echo json_encode(["status" => 500, "message" => "Failed to move uploaded file"]);
+        // Move the uploaded file
+        if (move_uploaded_file($tmp_file["tmp_name"], $uploadPath)) {
+            // Insert data into the database
+            $insert = mysqli_query($conn, "INSERT INTO `add_products`(`id`, `category`, `name`, `description`, `quantity`, `price`, `image`) VALUES ('$id','$category','$name','$description', '$quantity', '$price','$perm_file')");
+            
+            if ($insert) {
+                echo json_encode(["status" => 200, "message" => "Product Uploaded Successfully"]);
+            } else {
+                echo json_encode(["status" => 500, "message" => "Failed to upload product"]);
+            }
+        } else {
+            echo json_encode(["status" => 500, "message" => "Failed to move uploaded file"]);
+        }    
     }
 } else {
     echo json_encode(["status" => 405, "message" => "Method not allowed"]);
