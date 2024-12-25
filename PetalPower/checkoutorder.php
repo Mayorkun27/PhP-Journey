@@ -1,73 +1,5 @@
 <?php
 
-    // include_once "connect.php";
-    // include_once "validatetoken.php";
-
-    // // Retrieve all headers
-    // $headers = getallheaders();
-
-    // // Check for the Authorization header
-    // $token = isset($headers['Authorization']) ? str_replace('Bearer ', '', $headers['Authorization']) : null;
-
-    // if (!$token) {
-    //     echo json_encode(["status" => 501, "message" => "No token provided"]);
-    //     exit();
-    // }
-
-    // if (isTokenValid($conn, $token)) {
-    //     // Token is valid
-    //     $query_user_details = mysqli_query($conn, "SELECT * FROM `petal_power_users` WHERE `token` = '$token'");
-    //     $find_in_row = mysqli_num_rows($query_user_details);
-    
-    //     if ($find_in_row === 1) {
-    //         $user = mysqli_fetch_assoc($query_user_details);
-            
-    //         // Return user details in the response
-    //         echo json_encode([
-    //             "status" => 200,
-    //             "message" => "User details retrieved successfully",
-    //             "data" => $user
-    //         ]);
-
-    //         $cFullName = $user["fName"]." ".$user["lName"];
-    //         $cTel = $user["phoneNumber"];
-    //         $cAddress = $user["address"];
-    //         $cEmail = $user["email"];
-    //         $orderId = $_POST["orderId"];
-    //         $orderStatus = false;
-
-    //         if (empty($cFullName) || empty($cTel) || empty($cAddress)) {
-    //             echo json_encode([
-    //                 "status" => 200,
-    //                 "message" => "Failed to initiate checkout as details are missing",
-    //             ]);
-    //         } else {
-    //             $write_checkout_into_table = mysqli_query($conn, "INSERT INTO `petal_power_orders`(`orderId`, `clientName`, `clientEmail`, `clientTel`, `clientAddress`, `prodId`, `prodName`, `prodDesc`, `prodPrice`, `prodQuan`, `prodCategory`, `orderStatus`) VALUES ('$orderId','$cFullName','$cEmail','$cTel','$cAddress','[value-6]','[value-7]','[value-8]','[value-9]','[value-10]','[value-11]','$orderStatus')");
-
-    //             if ($write_checkout_into_table) {
-    //                 echo json_encode([
-    //                     "status" => 200,
-    //                     "message" => "Checkout initiated successfully",
-    //                 ]);
-    //             }
-    //         }
-    //     } else {
-    //         echo json_encode(["status" => 404, "message" => "User not found"]);
-    //     }
-    // } else {
-    //     // Token is invalid or expired
-    //     echo json_encode(["status" => 401, "message" => "Token is invalid or expired"]);
-    // }
-    
-    // // Close the database connection
-    // mysqli_close($conn);
-
-?>
-
-
-
-<?php
-
 include_once "connect.php";
 include_once "validatetoken.php";
 
@@ -96,6 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     $user = mysqli_fetch_assoc($userQuery);
+    $clientId = $user["id"];
     $cFullName = $user["fName"] . " " . $user["lName"];
     $cTel = $user["phoneNumber"];
     $cAddress = $user["address"];
@@ -144,7 +77,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ((int)$product['quantity'] < $quantity) {
             echo json_encode([
                 "status" => 400,
-                "message" => "Insufficient stock for product: {$product['name']}"
+                "message" => "Insufficient stock for product: {$product['name']}. Just {$product['quantity']} left",
             ]);
             exit();
         }
@@ -159,8 +92,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         // Save order details in the database
         mysqli_query($conn, "INSERT INTO `petal_power_orders` 
-            (`orderId`, `clientName`, `clientEmail`, `clientTel`, `clientAddress`, `prodId`, `prodName`, `prodDesc`, `prodPrice`, `prodQuan`, `prodCategory`, `orderStatus`) 
-            VALUES ('$orderId', '$cFullName', '$cEmail', '$cTel', '$cAddress', '$productId', '{$product['name']}', '{$product['description']}', '{$product['price']}', '$quantity', '{$product['category']}', '$orderStatus')");
+            (`orderId`, `clientId`, `clientName`, `clientEmail`, `clientTel`, `clientAddress`, `prodId`, `prodName`, `prodDesc`, `prodPrice`, `prodQuan`, `prodCategory`, `orderStatus`) 
+            VALUES ('$orderId', '$clientId', '$cFullName', '$cEmail', '$cTel', '$cAddress', '$productId', '{$product['name']}', '{$product['description']}', '{$product['price']}', '$quantity', '{$product['category']}', '$orderStatus')");
     }
 
     // Return success response
@@ -170,6 +103,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         "orderId" => $orderId,
         "totalCost" => $totalCost,
         "deliveryDetails" => [
+            "clientId" => $clientId,
             "clientName" => $cFullName,
             "clientTel" => $cTel,
             "clientAddress" => $cAddress
